@@ -39,20 +39,30 @@ Item {
         anchors { top: parent.top; left: parent.left; bottom: parent.bottom }
         color: '#1d1f21'
 
-        TextEdit {
-            id: editor
-            anchors { fill: parent; margins: 20 } 
-            wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
-            onTextChanged: timer.restart();
+        Flickable {
+            anchors { fill: parent } 
+            flickableDirection: Flickable.VerticalFlick
+            contentWidth: parent.width
+            contentHeight: editor.height
+            clip: true
 
-            // style from Atom dark theme: 
-            // https://github.com/atom/atom-dark-syntax/blob/master/stylesheets/syntax-variables.less
-            color: '#c5c8c6'
-            selectionColor: '#444444'
-            selectByMouse: true
-            font { pointSize: 16; family: 'Courier New' }
+            TextEdit {
+                id: editor
+                width: parent.width
+                anchors { margins: 20 } 
+                wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
+                renderType: Text.NativeRendering
+                onTextChanged: timer.restart();
 
-            text:   "import QtQuick 2.0\n" + "Rectangle { anchors.fill: parent; color: '#ff0000' }"
+                // style from Atom dark theme: 
+                // https://github.com/atom/atom-dark-syntax/blob/master/stylesheets/syntax-variables.less
+                color: '#c5c8c6'
+                selectionColor: '#444444'
+                selectByMouse: true
+                font { pointSize: 16; family: 'Courier New' }
+
+                text:   "import QtQuick 2.0\n" + "Rectangle { anchors.fill: parent; color: '#ff0000' }"
+            }
         }
     }
     Item {
