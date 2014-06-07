@@ -52,7 +52,19 @@ Item {
                 anchors { margins: 20 } 
                 wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
                 renderType: Text.NativeRendering
-                onTextChanged: timer.restart();
+                onTextChanged: timer.restart(); 
+
+                // FIXME: stupid workaround for indent
+                Keys.onReturnPressed: {
+                    editor.select(0, cursorPosition)
+                    var previousContent = editor.selectedText.split(/\r\n|\r|\n/)
+                    editor.deselect()
+                    var currentLine = previousContent[previousContent.length - 1]
+                    var leftBrace = /{/;
+                    editor.insert(cursorPosition, "\n")
+                    editor.insert(cursorPosition, currentLine.match(new RegExp(/^[ \t]*/)) ) // whitespace
+                    editor.insert(cursorPosition, leftBrace.test(currentLine) ? "\t" : "") // indent
+                }
 
                 // style from Atom dark theme: 
                 // https://github.com/atom/atom-dark-syntax/blob/master/stylesheets/syntax-variables.less
