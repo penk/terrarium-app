@@ -73,7 +73,9 @@ Item {
                 selectByMouse: true
                 font { pointSize: 16; family: 'Courier New' }
 
-                text:   "import QtQuick 2.0\n" + "Rectangle { anchors.fill: parent; color: '#ff0000' }"
+                text:   "import QtQuick 2.0\n\nRectangle { \n\tanchors.fill: parent" + 
+                "\n\tcolor: '#FEEB75' \n\tText { \n\t\tanchors.centerIn: parent" + 
+                "\n\t\ttext: 'Hello, World!' \n\t} \n}"
             }
         }
     }
