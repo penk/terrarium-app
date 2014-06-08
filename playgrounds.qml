@@ -32,6 +32,16 @@ Item {
         onTriggered: viewLoader.setSource('http://localhost:5000/?'+Math.random()) // workaround for cache
     }
 
+    Item {
+        width: root.width/2
+        height: root.height
+        anchors { top: parent.top; left: background.right; bottom: parent.bottom }
+        Loader {
+            id: viewLoader
+            anchors.fill: parent
+        }
+    }
+
     Rectangle { 
         id: background
         width: root.width/2
@@ -63,7 +73,7 @@ Item {
                     var leftBrace = /{/;
                     editor.insert(cursorPosition, "\n")
                     editor.insert(cursorPosition, currentLine.match(new RegExp(/^[ \t]*/)) ) // whitespace
-                    editor.insert(cursorPosition, leftBrace.test(currentLine) ? "\t" : "") // indent
+                    editor.insert(cursorPosition, leftBrace.test(currentLine) ? "    " : "") // indent
                 }
 
                 // style from Atom dark theme: 
@@ -73,19 +83,10 @@ Item {
                 selectByMouse: true
                 font { pointSize: 16; family: 'Courier New' }
 
-                text:   "import QtQuick 2.0\n\nRectangle { \n\tanchors.fill: parent" + 
-                "\n\tcolor: '#FEEB75' \n\tText { \n\t\tanchors.centerIn: parent" + 
-                "\n\t\ttext: 'Hello, World!' \n\t} \n}"
+                text:   "import QtQuick 2.0\n\nRectangle { \n    color: '#FEEB75'" + 
+                    "\n    Text { \n        anchors.centerIn: parent" + 
+                    "\n        text: 'Hello, World!' \n    } \n}"
             }
-        }
-    }
-    Item {
-        width: root.width/2
-        height: root.height
-        anchors { top: parent.top; left: background.right; bottom: parent.bottom }
-        Loader {
-            id: viewLoader
-            anchors.fill: parent
         }
     }
 }
