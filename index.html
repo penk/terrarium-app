@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="QML Playgrounds : Reload-as-you-type QML editor and live viewer" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>QML Playgrounds</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/penk/qml-playgrounds">View on GitHub</a>
+
+          <h1 id="project_title">QML Playgrounds</h1>
+          <h2 id="project_tagline">Reload-as-you-type QML editor and live viewer</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/penk/qml-playgrounds/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/penk/qml-playgrounds/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="qml-playgrounds" class="anchor" href="#qml-playgrounds"><span class="octicon octicon-link"></span></a>QML Playgrounds</h1>
+
+<p><img src="http://i.imgur.com/lBSQFC2.png" alt="playgrounds"></p>
+
+<h3>
+<a name="reload-as-you-type-qml-editor-and-live-viewer" class="anchor" href="#reload-as-you-type-qml-editor-and-live-viewer"><span class="octicon octicon-link"></span></a>Reload-as-you-type QML editor and live viewer</h3>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<ol>
+<li>Install QML <a href="https://github.com/rschroll/qhttpserver">HttpServer</a> plugin, see <a href="http://rschroll.github.io/beru/2013/08/16/a-http-server-in-qml.html">more details</a>
+</li>
+<li>Start the editor by: <code>qmlscene playgrounds.qml</code> </li>
+</ol><p>Or</p>
+
+<pre><code>qmake &amp;&amp; make 
+./playground
+</code></pre>
+
+<p>QML Playgrounds monitors changes in its <code>TextEdit</code>, and trigger the view to reload source from the local http server. If you're looking for a file system watcher implementation, please refer to <a href="https://github.com/penk/qml-playgrounds">QML LiveReload</a>. </p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">QML Playgrounds maintained by <a href="https://github.com/penk">penk</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-2040009-5");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
