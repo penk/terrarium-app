@@ -36,9 +36,37 @@ Item {
         width: root.width/2
         height: root.height
         anchors { top: parent.top; left: background.right; bottom: parent.bottom }
+
+        Rectangle {
+            color: 'grey'
+            visible: errorMessage.text != ""
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.top
+            anchors.bottomMargin: errorMessage.text == "" ? 0 : -height
+            width: parent.width
+            height: errorMessage.height 
+
+            Behavior on anchors.bottomMargin {
+                NumberAnimation { duration: 150; easing.type: Easing.OutQuad }
+            }
+
+            Text {
+                id: errorMessage
+                anchors { left: parent.left; leftMargin: 20; right: parent.right; rightMargin: 20; top: parent.top; topMargin: 10 }
+                font.pointSize: 20
+                wrapMode: Text.WordWrap
+                text: ""
+            }
+        }
+
         Loader {
             id: viewLoader
             anchors.fill: parent
+            onStatusChanged: {
+                if (viewLoader.status == Loader.Error) {
+                    errorMessage.text = viewLoader.errorString().replace(/http:\/\/localhost:5000\/\?.*?:/g, "");
+                } else { errorMessage.text = "" }
+            }
         }
     }
 

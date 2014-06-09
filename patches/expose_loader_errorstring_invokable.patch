@@ -1,0 +1,33 @@
+--- qtdeclarative-opensource-src-5.2.1.orig/src/quick/items/qquickloader.cpp
++++ qtdeclarative-opensource-src-5.2.1/src/quick/items/qquickloader.cpp
+@@ -618,6 +618,20 @@ void QQuickLoaderPrivate::load()
+     }
+ }
+ 
++QString QQuickLoader::errorString() const
++{
++   Q_D(const QQuickLoader);
++   QString ret;
++   if(d->component->errors().isEmpty())
++      return ret;
++   foreach(const QQmlError &e, d->component->errors()) {
++      ret += e.url().toString() + QLatin1Char(':') +
++        QString::number(e.line()) + QLatin1Char(' ') +
++        e.description() + QLatin1Char('\n');
++   }
++   return ret;
++}
++
+ void QQuickLoaderIncubator::setInitialState(QObject *o)
+ {
+     loader->setInitialState(o);
+--- qtdeclarative-opensource-src-5.2.1.orig/src/quick/items/qquickloader_p.h
++++ qtdeclarative-opensource-src-5.2.1/src/quick/items/qquickloader_p.h
+@@ -68,6 +68,7 @@ public:
+     void setActive(bool newVal);
+ 
+     Q_INVOKABLE void setSource(QQmlV4Function *);
++    Q_INVOKABLE QString errorString() const;
+ 
+     QUrl source() const;
+     void setSource(const QUrl &);

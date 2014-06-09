@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = playground
+TARGET = Playgrounds
 QT += qml quick network
 
 SOURCES += main.cpp \
