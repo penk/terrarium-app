@@ -3,6 +3,9 @@ import QtQuick.Window 2.0
 
 // from https://github.com/rschroll/qhttpserver
 import HttpServer 1.0
+// from https://gitorious.org/aalperts-automatons/bragi and
+// https://github.com/khertan/ownNotes
+import DocumentHandler 1.0
 
 Item {
     id: root
@@ -111,9 +114,17 @@ Item {
                 selectByMouse: true
                 font { pointSize: 16; family: 'Courier New' }
 
-                text:   "import QtQuick 2.0\n\nRectangle { \n    color: '#FEEB75'" + 
-                    "\n    Text { \n        anchors.centerIn: parent" + 
-                    "\n        text: 'Hello, World!' \n    } \n}"
+                text: documentHandler.text
+
+                DocumentHandler {
+                    id: documentHandler
+                    target: editor
+                    Component.onCompleted: { 
+                        documentHandler.text = "import QtQuick 2.0\n\nRectangle { \n    color: '#FEEB75'" + 
+                            "\n    Text { \n        anchors.centerIn: parent" + 
+                            "\n        text: 'Hello, World!' \n    } \n}"
+                    }
+                }
             }
         }
     }
