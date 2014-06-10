@@ -1,10 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
 
-// from https://github.com/rschroll/qhttpserver
 import HttpServer 1.0
-// from https://gitorious.org/aalperts-automatons/bragi and
-// https://github.com/khertan/ownNotes
 import DocumentHandler 1.0
 
 Item {
