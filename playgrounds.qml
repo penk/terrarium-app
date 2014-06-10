@@ -64,7 +64,7 @@ Item {
             anchors.fill: parent
             onStatusChanged: {
                 if (viewLoader.status == Loader.Error) {
-                    errorMessage.text = viewLoader.errorString().replace(/http:\/\/localhost:5000\/\?.*?:/g, "");
+                    errorMessage.text = viewLoader.errorString().replace(/http:\/\/localhost:5000\/\?.*?:/g, "Line: ");
                 } else { errorMessage.text = "" }
             }
         }
