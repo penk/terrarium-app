@@ -8,7 +8,7 @@ QML Playgrounds
 ## Usage 
 
     git clone https://github.com/penk/qml-playgrounds.git
-    cd qml-playgrounds && git submodule update 
+    cd qml-playgrounds && git submodule init && git submodule update 
     qmake && make 
     ./Playgrounds
 
