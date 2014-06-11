@@ -16,6 +16,9 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+    app.setApplicationName("Terrarium");
+    app.setOrganizationName("terrariumapp");
+    app.setOrganizationDomain("terrariumapp.com");
 
     qmlRegisterType<QHttpServer>("HttpServer", 1, 0, "HttpServer");
     qmlRegisterType<DocumentHandler>("DocumentHandler", 1, 0, "DocumentHandler");
