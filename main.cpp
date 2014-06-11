@@ -1,7 +1,9 @@
 #include <QtQuick/QQuickView>
 #include <QtGui/QGuiApplication>
 #include <QtQml>
+#if QT_VERSION > QT_VERSION_CHECK(5, 1, 0)
 #include <QQmlApplicationEngine>
+#endif
 #include "qhttpserver/src/qhttpserver.h"
 #include "qhttpserver/src/qhttprequest.h"
 #include "qhttpserver/src/qhttpresponse.h"
@@ -17,7 +19,12 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<QHttpRequest>("HttpServer", 1, 0, "HttpRequest", "Do not create HttpRequest directly");
     qmlRegisterUncreatableType<QHttpResponse>("HttpServer", 1, 0, "HttpResponse", "Do not create HttpResponse directly");
 
-    QQmlApplicationEngine engine(QUrl("qrc:/playgrounds.qml"));
-
+#if QT_VERSION > QT_VERSION_CHECK(5, 1, 0)
+    QQmlApplicationEngine engine(QUrl("qrc:///playgrounds.qml"));
+#else
+    QQuickView view;
+    view.setSource(QUrl("qrc:/playgrounds.qml"));
+    view.show();
+#endif 
     return app.exec();
 }

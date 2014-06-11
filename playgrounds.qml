@@ -9,7 +9,6 @@ Window {
     width: Screen.width
     height: Screen.height
     visible: true
-    title: "QML Playgrounds"
 
     HttpServer {
         id: server
@@ -88,8 +87,8 @@ Window {
 
             TextEdit {
                 id: editor
-                width: parent.width
-                anchors { margins: 20 } 
+                //width: parent.width
+                anchors { margins: 20; left: parent.left; right: parent.right; top: parent.top } 
                 wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
                 renderType: Text.NativeRendering
                 onTextChanged: timer.restart(); 
@@ -111,7 +110,7 @@ Window {
                 color: '#c5c8c6'
                 selectionColor: '#444444'
                 selectByMouse: true
-                font { pointSize: 16; family: 'Courier New' }
+                font { pointSize: 18; family: 'Courier New' }
 
                 text: documentHandler.text
 
