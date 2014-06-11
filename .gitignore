@@ -27,3 +27,4 @@ Makefile*
 
 *.autosave
 *.swp
+*.app
