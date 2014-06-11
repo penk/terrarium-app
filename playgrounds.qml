@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
-
+import QtQuick.LocalStorage 2.0
 import HttpServer 1.0
 import DocumentHandler 1.0
 
@@ -10,6 +10,31 @@ Window {
     height: Screen.height
     visible: true
     title: "QML Playgrounds"
+
+    Component.onCompleted: {
+        var db = getDatabase();
+            db.transaction(
+                function(tx) {
+                    var result = tx.executeSql("SELECT * FROM previous");
+                    for (var i=0; i < result.rows.length; i++) {
+                        editor.text = result.rows.item(i).editor
+                    }
+                    tx.executeSql("DROP TABLE IF EXISTS previous");
+                }
+            );
+    }
+    Component.onDestruction: {
+        var db = getDatabase();
+        db.transaction(
+            function(tx) { tx.executeSql('insert into previous values (?);', editor.text); }
+        );
+    }
+
+    function getDatabase() {
+        var db = LocalStorage.openDatabaseSync("qml-playgrounds", "0.1", "history db", 100000);
+        db.transaction(function(tx) {tx.executeSql('CREATE TABLE IF NOT EXISTS previous (editor TEXT)'); });
+        return db;
+    }
 
     HttpServer {
         id: server
