@@ -16,7 +16,7 @@ QML Playgrounds
     ./Playgrounds
 
 
-QML Playgrounds monitors changes in its `TextEdit`, and trigger the view to reload source from the local http server. If you're looking for a file system watcher implementation, please refer to [QML LiveReload](https://github.com/penk/qml-playgrounds). 
+QML Playgrounds monitors changes in its `TextEdit`, and trigger the view to reload source from the local http server. If you're looking for a file system watcher implementation, please refer to [QML LiveReload](https://github.com/penk/qml-livereload). 
 
 ## LICENSE 
 
