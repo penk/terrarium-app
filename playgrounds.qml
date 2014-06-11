@@ -94,17 +94,26 @@ Window {
                 onTextChanged: timer.restart(); 
 
                 // FIXME: stupid workaround for indent
+                Keys.onPressed: {
+                    if (event.key == Qt.Key_BraceRight) {
+                        editor.select(0, cursorPosition)
+                        var previousContent = editor.selectedText.split(/\r\n|\r|\n/)
+                        editor.deselect()
+                        var currentLine = previousContent[previousContent.length - 1]
+                        var leftBrace = /{/, rightBrace = /}/;
+                        if (!leftBrace.test(currentLine)) {
+                            editor.remove(cursorPosition, cursorPosition - currentLine.length);
+                            currentLine = currentLine.toString().replace(/ {1,4}$/, "");
+                            editor.insert(cursorPosition, currentLine);
+                        }
+                    }
+                }
                 Keys.onReturnPressed: {
                     editor.select(0, cursorPosition)
                     var previousContent = editor.selectedText.split(/\r\n|\r|\n/)
                     editor.deselect()
                     var currentLine = previousContent[previousContent.length - 1]
                     var leftBrace = /{/, rightBrace = /}/;
-                    if (rightBrace.test(currentLine) && !leftBrace.test(currentLine)) {
-                        editor.remove(cursorPosition, cursorPosition - currentLine.length);
-                        currentLine = currentLine.toString().replace(/ {1,4}\}/, "}");
-                        editor.insert(cursorPosition, currentLine);
-                    }
                     editor.insert(cursorPosition, "\n")
                     var whitespaceAppend = currentLine.match(new RegExp(/^[ \t]*/))  // whitespace
                     if (leftBrace.test(currentLine)) // indent
