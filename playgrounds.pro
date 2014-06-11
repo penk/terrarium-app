@@ -20,3 +20,8 @@ HEADERS += qhttpserver/src/qhttpserver.h \
 
 INCLUDEPATH += ./qhttpserver/http-parser/
 RESOURCES += resource.qrc
+
+#ios: {
+#    LIBS += -L~/Qt5/5.3/ios/qml/QtQuick/LocalStorage -lqmllocalstorageplugin
+#    QTPLUGIN += qsqlite
+#}
