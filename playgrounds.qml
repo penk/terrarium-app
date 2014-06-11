@@ -99,10 +99,17 @@ Window {
                     var previousContent = editor.selectedText.split(/\r\n|\r|\n/)
                     editor.deselect()
                     var currentLine = previousContent[previousContent.length - 1]
-                    var leftBrace = /{/;
+                    var leftBrace = /{/, rightBrace = /}/;
+                    if (rightBrace.test(currentLine) && !leftBrace.test(currentLine)) {
+                        editor.remove(cursorPosition, cursorPosition - currentLine.length);
+                        currentLine = currentLine.toString().replace(/ {1,4}\}/, "}");
+                        editor.insert(cursorPosition, currentLine);
+                    }
                     editor.insert(cursorPosition, "\n")
-                    editor.insert(cursorPosition, currentLine.match(new RegExp(/^[ \t]*/)) ) // whitespace
-                    editor.insert(cursorPosition, leftBrace.test(currentLine) ? "    " : "") // indent
+                    var whitespaceAppend = currentLine.match(new RegExp(/^[ \t]*/))  // whitespace
+                    if (leftBrace.test(currentLine)) // indent
+                        whitespaceAppend += "    "; 
+                    editor.insert(cursorPosition, whitespaceAppend)
                 }
 
                 // style from Atom dark theme: 
