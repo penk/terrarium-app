@@ -9,6 +9,9 @@
 #include "qhttpserver/src/qhttpresponse.h"
 #include "qhttpserver/src/qhttpconnection.h"
 #include "documenthandler.h"
+#if USE_WEBENGINE
+#include <qtwebengineglobal.h>
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -18,7 +21,9 @@ int main(int argc, char *argv[])
     qmlRegisterType<DocumentHandler>("DocumentHandler", 1, 0, "DocumentHandler");
     qmlRegisterUncreatableType<QHttpRequest>("HttpServer", 1, 0, "HttpRequest", "Do not create HttpRequest directly");
     qmlRegisterUncreatableType<QHttpResponse>("HttpServer", 1, 0, "HttpResponse", "Do not create HttpResponse directly");
-
+#if USE_WEBENGINE
+    QWebEngine::initialize();
+#endif
 #if QT_VERSION > QT_VERSION_CHECK(5, 1, 0)
     QQmlApplicationEngine engine(QUrl("qrc:///playgrounds.qml"));
 #else

@@ -4,11 +4,12 @@ import QtQuick.Window 2.0
 import HttpServer 1.0
 import DocumentHandler 1.0
 
-Window { 
+Window {
     id: root
     width: Screen.width
     height: Screen.height
     visible: true
+    title: "QML Playgrounds"
 
     HttpServer {
         id: server
