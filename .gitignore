@@ -28,3 +28,4 @@ Makefile*
 *.autosave
 *.swp
 *.app
+*.dmg

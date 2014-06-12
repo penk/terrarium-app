@@ -24,6 +24,7 @@ RESOURCES += resource.qrc
 mac {
     QMAKE_INFO_PLIST = mac/Info.plist
     ICON = mac/icon.icns
+    QMAKE_POST_LINK += macdeployqt Terrarium.app/ -qmldir=qml/ -verbose=1 -dmg
 }
 
 ios {
