@@ -1,7 +1,7 @@
 Terrarium
-===============
+=========
 
-![playgrounds](http://i.imgur.com/nyPoJfI.png)
+![playgrounds](http://i.imgur.com/loccdyw.png)
 
 ### Live QML Editor and Viewer
 
