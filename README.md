@@ -19,13 +19,13 @@ Terrarium is a cross platform QML Playgrounds! It monitors changes in its `TextE
 
 ## Build for Mac/iOS
 
-To add icons to iOS build, first generate and open `Terrarium.xcodeproj`, switch AppIcon to use (Assets Catalog)[https://developer.apple.com/library/ios/recipes/xcode_help-image_catalog-1.0/Recipe.html], then replace `Terrarium/Images.xcassets/` with `ios/Images.xcassets`. 
+To add icons to iOS build, first generate and open `Terrarium.xcodeproj`, switch AppIcon to use [Assets Catalog](https://developer.apple.com/library/ios/recipes/xcode_help-image_catalog-1.0/Recipe.html), then replace `Terrarium/Images.xcassets/` directory with `ios/Images.xcassets`. 
 
 As for Mac OSX, refer to `macdeployqt` command in `terrarium-app.pro` file. 
 
 ## Build for Ubuntu Linux
 
-If you're using apt-get instead of (qt-project.org)[http://download.qt-project.org/] releases, here's the dependencies: 
+If you're using Qt packages from apt archive instead of [qt-project.org](http://download.qt-project.org/) releases, here's the dependencies: 
 
     sudo apt-get install qt5-qmake qtbase5-dev qtdeclarative5-dev 
 
