@@ -22,8 +22,10 @@ INCLUDEPATH += ./qhttpserver/http-parser/
 RESOURCES += resource.qrc
 
 mac {
-    CONFIG += x86
-    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
-    QMAKE_INFO_PLIST = Info.plist
-    ICON = icon.icns
+    QMAKE_INFO_PLIST = mac/Info.plist
+    ICON = mac/icon.icns
+}
+
+ios {
+    QMAKE_INFO_PLIST = ios/Info.plist
 }
