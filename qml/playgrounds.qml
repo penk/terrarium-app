@@ -9,7 +9,7 @@ Window {
     width: Screen.width
     height: Screen.height
     visible: true
-    title: "QML Playgrounds"
+    title: "Terrarium - Live QML Editor and Viewer"
 
     Component.onCompleted: {
         var db = getDatabase();
@@ -31,7 +31,7 @@ Window {
     }
 
     function getDatabase() {
-        var db = LocalStorage.openDatabaseSync("qml-playgrounds", "0.1", "history db", 100000);
+        var db = LocalStorage.openDatabaseSync("terrarium-app", "0.1", "history db", 100000);
         db.transaction(function(tx) {tx.executeSql('CREATE TABLE IF NOT EXISTS previous (editor TEXT)'); });
         return db;
     }
