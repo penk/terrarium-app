@@ -1,6 +1,10 @@
 TEMPLATE = app
 TARGET = Terrarium
 QT += qml quick network
+webengine {
+    QT += webengine
+    DEFINES += USE_WEBENGINE
+}
 
 SOURCES += main.cpp \
     qmlhighlighter.cpp \
