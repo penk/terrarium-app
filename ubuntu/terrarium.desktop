@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Terrarium
+GenericName=Terrarium
+Comment=Live QML Editor and Viewer
+Type=Application
+Icon=./terrarium-app.png
+Exec=./Terrarium
+Terminal=false
+MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;
+X-Ubuntu-Touch=true

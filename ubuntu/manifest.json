@@ -1,0 +1,15 @@
+{
+"description": "Live QML Editor and Viewer",
+"framework": "ubuntu-sdk-14.04",
+"architecture": "armhf",
+"hooks": {
+"terrarium": {
+"apparmor": "terrarium.json",
+"desktop": "terrarium.desktop"
+}
+},
+"maintainer": "Penk Chen <penkia@gmail.com>",
+"name": "com.ubuntu.developer.penk.terrarium",
+"title": "Terrarium",
+"version": "0.4"
+}
