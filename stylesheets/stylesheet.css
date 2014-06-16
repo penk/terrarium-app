@@ -366,7 +366,7 @@ Full-Width Styles
   background: #212121;
 }
 
-
+.testimonial { margin: 0; background: #F6F6F6;     padding: 10px 50px;     position: relative;     font-family: Georgia, serif;     color: #666;     border-radius: 5px;     font-style: italic;     text-shadow: 0 1px 0 #ECFBFF;     background-image: linear-gradient(#F6F6F6, #CECBCB); } .testimonial:before, .testimonial:after {     content: "\201C";     position: absolute;     font-size: 80px;     line-height: 1;     color: #999;     font-style: normal; } .testimonial:before {     top: 0;     left: 10px; } .testimonial:after {     content: "\201D";     right: 10px;     bottom: -0.5em; } .arrow-down {     width: 0;     height: 0;     border-left: 15px solid transparent;     border-right: 15px solid transparent;     border-top: 15px solid #CECBCB;     margin: 0 0 0 25px; } .testimonial-author {     margin: 0 0 0 25px;     font-family: Arial, Helvetica, sans-serif;     color: #999;     text-align:left; } .testimonial-author span {     font-size: 12px;     color: #666; } 
 
 /*******************************************************************************
 Small Device Styles
