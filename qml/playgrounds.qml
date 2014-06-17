@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
-import QtQuick.LocalStorage 2.0
+//import QtQuick.LocalStorage 2.0
 import HttpServer 1.0
 import DocumentHandler 1.0
 
@@ -10,7 +10,7 @@ Window {
     height: Screen.height
     visible: true
     title: "Terrarium - Live QML Editor and Viewer"
-
+/*
     Component.onCompleted: {
         var db = getDatabase();
             db.transaction(
@@ -35,7 +35,7 @@ Window {
         db.transaction(function(tx) {tx.executeSql('CREATE TABLE IF NOT EXISTS previous (editor TEXT)'); });
         return db;
     }
-
+*/
     HttpServer {
         id: server
         Component.onCompleted: listen("127.0.0.1", 5000)
