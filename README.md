@@ -39,7 +39,9 @@ Firstly generate your keystore by `keytool`, then:
 
 Copy `android/AndroidManifest.xml` and `android/res` to `../android-terrarium`, build and sign apk by: 
 
-    ~/Qt5/5.3/android_armv7/bin/androiddeployqt --input android-libTerrarium.so-deployment-settings.json --output ../android-terrarium --release --sign ../TerrariumApp.keystore TerrariumApp
+    ~/Qt5/5.3/android_armv7/bin/androiddeployqt --input \
+        android-libTerrarium.so-deployment-settings.json \
+        --output ../android-terrarium --release --sign ../TerrariumApp.keystore TerrariumApp
 
 ## Tested Platforms
 
