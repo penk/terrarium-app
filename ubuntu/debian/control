@@ -1,0 +1,23 @@
+Source: terrarium
+Priority: extra
+Maintainer: Ping-Hsun Chen (penk) <penkia@gmail.com>
+Build-Depends: debhelper (>= 8.0.0),
+        qt5-qmake,
+        qt5-default,
+        qtbase5-dev,
+        qtdeclarative5-dev
+Standards-Version: 3.9.4
+Section: misc
+Homepage: http://www.terrariumapp.com
+
+Package: terrarium
+Section: misc
+Architecture: i386 amd64 armhf
+Depends: ${misc:Depends},
+ 	 ${shlibs:Depends},
+ 	 qmlscene,
+         libqt5sql5-sqlite,
+         qtdeclarative5-qtquick2-plugin,
+         qtdeclarative5-window-plugin,
+Description: Live QML Editor and Viewer
+ Terrarium is an open source QML Playgrounds
