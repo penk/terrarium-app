@@ -13,7 +13,7 @@ Terrarium - Live QML Editor and Viewer
 
     ./Terrarium
 
-Terrarium is a cross platform QML Playgrounds! It monitors changes in its `TextEdit`, and trigger the view to reload source from the local http server. If you're looking for a file system watcher implementation, please refer to [QML LiveReload](https://github.com/penk/qml-livereload). 
+Terrarium is a cross platform QML Playground! It monitors changes in its `TextEdit`, and triggers the view to reload source from the local http server. If you're looking for a file system watcher implementation, please refer to [QML LiveReload](https://github.com/penk/qml-livereload). 
 
 ## Platform Specific Instructions
 
@@ -29,7 +29,7 @@ If you're using Qt packages from apt archive instead of [qt-project.org](http://
 
     sudo apt-get install qt5-qmake qt5-default qtbase5-dev qtdeclarative5-dev build-essential
 
-All `debian/` package informations can be found under `ubuntu/` directory, copy it to current path and build the package by:
+All `debian/` package information can be found under `ubuntu/` directory, copy it to current path and build the package by:
 
     cp -r ubuntu/debian . 
     dpkg-buildpackage -b 
@@ -46,7 +46,7 @@ And install it
 
 ### For Android 
 
-Firstly generate your keystore by `keytool`, then: 
+First generate your keystore by `keytool`, then:
 
     ~/Qt5/5.3/android_armv7/bin/qmake
     make 
@@ -68,7 +68,7 @@ Copy `android/AndroidManifest.xml` and `android/res` to `../android-terrarium`, 
 
 ## LICENSE 
 
-The source codes are, unless otherwise specified, distributed under the terms of the MIT License. 
+The source code is, unless otherwise specified, distributed under the terms of the MIT License. 
 
 ## CREDITS
 
