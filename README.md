@@ -17,17 +17,32 @@ Terrarium is a cross platform QML Playgrounds! It monitors changes in its `TextE
 
 ## Platform Specific Instructions
 
-### For Mac/iOS
+### For Mac OSX/iOS
 
 To add icons to iOS build, first generate and open `Terrarium.xcodeproj`, switch AppIcon to use [Assets Catalog](https://developer.apple.com/library/ios/recipes/xcode_help-image_catalog-1.0/Recipe.html), then replace `Terrarium/Images.xcassets/` directory with `ios/Images.xcassets`. 
 
 As for Mac OSX, refer to `macdeployqt` command in `terrarium-app.pro` file. 
 
-### For Ubuntu Linux
+### For Ubuntu Desktop/Phone
 
 If you're using Qt packages from apt archive instead of [qt-project.org](http://download.qt-project.org/) releases, here's the dependencies: 
 
-    sudo apt-get install qt5-qmake qtbase5-dev qtdeclarative5-dev 
+    sudo apt-get install qt5-qmake qt5-default qtbase5-dev qtdeclarative5-dev build-essential
+
+All `debian/` package informations can be found under `ubuntu/` directory, copy it to current path and build the package by:
+
+    cp -r ubuntu/debian . 
+    dpkg-buildpackage -b 
+
+If you're building click package, execute following command on device (for native compile):
+
+    cp ubuntu/* . 
+    click build . 
+
+And install it
+
+    click install ./com.ubuntu.developer.penk.terrarium_0.4_armhf.click
+    click register --user=phablet com.ubuntu.developer.penk.terrarium 0.4
 
 ### For Android 
 
