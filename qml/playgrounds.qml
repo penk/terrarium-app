@@ -111,10 +111,26 @@ Window {
             contentHeight: editor.height
             clip: true
 
+            Column {
+                id: lineNumber
+                anchors { margins: 20; left: parent.left; top: parent.top } 
+                spacing: -1 
+                Repeater { 
+                    model: editor.lineCount
+                    Text { 
+                        width: 20
+                        text: index + 1
+                        color: 'lightgray'
+                        font.pointSize: editor.font.pointSize 
+                        horizontalAlignment: TextEdit.AlignHCenter
+                    }
+                }
+            }
+
             TextEdit {
                 id: editor
                 //width: parent.width
-                anchors { margins: 20; left: parent.left; right: parent.right; top: parent.top } 
+                anchors { margins: 20; left: lineNumber.right; right: parent.right; top: parent.top } 
                 wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
                 renderType: Text.NativeRendering
                 onTextChanged: timer.restart(); 
@@ -165,7 +181,8 @@ Window {
                             "\n        text: 'Hello, World!' \n    } \n}"
                     }
                 }
-            }
+            } // end of editor
+
         }
     }
 }
