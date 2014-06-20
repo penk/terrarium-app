@@ -89,10 +89,16 @@ Window {
         Loader {
             id: viewLoader
             anchors.fill: parent
+            property variant errorLineNumber: 0
             onStatusChanged: {
                 if (viewLoader.status == Loader.Error) {
                     errorMessage.text = viewLoader.errorString().replace(/http:\/\/localhost:5000\/\?.*?:/g, "Line: ");
-                } else { errorMessage.text = "" }
+                    errorLineNumber = errorMessage.text.match(/^Line: (.*?) /)[1];
+                    lineNumberRepeater.itemAt(errorLineNumber - 1).bgcolor = 'red'
+                } else { 
+                    errorMessage.text = ""; 
+                    lineNumberRepeater.itemAt(errorLineNumber - 1).bgcolor = 'transparent' 
+                }
             }
         }
     }
@@ -116,13 +122,21 @@ Window {
                 anchors { margins: 20; left: parent.left; top: parent.top } 
                 spacing: -1 
                 Repeater { 
+                    id: lineNumberRepeater
                     model: editor.lineCount
                     Text { 
+                        property alias bgcolor: rect.color
                         width: 20
                         text: index + 1
                         color: 'lightgray'
                         font.pointSize: editor.font.pointSize 
                         horizontalAlignment: TextEdit.AlignHCenter
+                        Rectangle {
+                            id: rect
+                            color: 'transparent'
+                            anchors.fill: parent
+                            opacity: 0.5
+                        }
                     }
                 }
             }
@@ -134,6 +148,14 @@ Window {
                 wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
                 renderType: Text.NativeRendering
                 onTextChanged: timer.restart(); 
+                /*
+                cursorDelegate: Rectangle {
+                    width: parent.width
+                    anchors.left: parent.left
+                    color: 'gray'
+                    opacity: 0.5
+                }
+                */
 
                 // FIXME: stupid workaround for indent
                 Keys.onPressed: {
