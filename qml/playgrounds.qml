@@ -68,7 +68,7 @@ Window {
             color: 'grey'
             visible: errorMessage.text != ""
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.top
+            anchors.bottom: Screen.top
             anchors.bottomMargin: errorMessage.text == "" ? 0 : -height
             width: parent.width
             height: errorMessage.height 
@@ -79,7 +79,7 @@ Window {
 
             Text {
                 id: errorMessage
-                anchors { left: parent.left; leftMargin: 20; right: parent.right; rightMargin: 20; top: parent.top; topMargin: 10 }
+                anchors { left: parent.left; leftMargin: 20; right: parent.right; rightMargin: 20; top: Screen.top; topMargin: 10 }
                 font.pointSize: 20
                 wrapMode: Text.WordWrap
                 text: ""
@@ -97,7 +97,8 @@ Window {
                     lineNumberRepeater.itemAt(errorLineNumber - 1).bgcolor = 'red'
                 } else { 
                     errorMessage.text = ""; 
-                    lineNumberRepeater.itemAt(errorLineNumber - 1).bgcolor = 'transparent' 
+                    if (errorLineNumber != 0)
+                    lineNumberRepeater.itemAt(errorLineNumber - 1).bgcolor = 'transparent'
                 }
             }
         }
@@ -120,7 +121,7 @@ Window {
             Column {
                 id: lineNumber
                 anchors { margins: 20; left: parent.left; top: parent.top } 
-                spacing: -1 
+                spacing: 3 // -1 
                 Repeater { 
                     id: lineNumberRepeater
                     model: editor.lineCount
