@@ -121,7 +121,7 @@ Window {
             Column {
                 id: lineNumber
                 anchors { margins: 20; left: parent.left; top: parent.top } 
-                spacing: 3 // -1 
+                spacing: 3 // -1  // 3 for iOS
                 Repeater { 
                     id: lineNumberRepeater
                     model: editor.lineCount
@@ -142,21 +142,27 @@ Window {
                 }
             }
 
+            Rectangle {
+                id: editorCurrentLineHighlight
+                anchors {
+                    left: lineNumber.right
+                    margins: 17
+                }
+                width: editor.width
+                height: editor.cursorRectangle.height
+                y: editor.cursorRectangle.y + 17
+                color: '#454545'
+            }
+
             TextEdit {
                 id: editor
-                //width: parent.width
-                anchors { margins: 20; left: lineNumber.right; right: parent.right; top: parent.top } 
+                anchors { 
+                    margins: 17 //20; // 17 for iOS 
+                    left: lineNumber.right; right: parent.right; top: parent.top 
+                } 
                 wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
                 renderType: Text.NativeRendering
                 onTextChanged: timer.restart(); 
-                /*
-                cursorDelegate: Rectangle {
-                    width: parent.width
-                    anchors.left: parent.left
-                    color: 'gray'
-                    opacity: 0.5
-                }
-                */
 
                 // FIXME: stupid workaround for indent
                 Keys.onPressed: {
