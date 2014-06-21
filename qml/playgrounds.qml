@@ -10,6 +10,8 @@ Window {
     height: Screen.height
     visible: true
     title: "Terrarium - Live QML Editor and Viewer"
+
+    property variant lineNumberPadding: 20 // 17 for iOS 
 /*
     Component.onCompleted: {
         var db = getDatabase();
@@ -121,7 +123,7 @@ Window {
             Column {
                 id: lineNumber
                 anchors { margins: 20; left: parent.left; top: parent.top } 
-                spacing: 3 // -1  // 3 for iOS
+                spacing: -1  // 3 for iOS
                 Repeater { 
                     id: lineNumberRepeater
                     model: editor.lineCount
@@ -146,18 +148,18 @@ Window {
                 id: editorCurrentLineHighlight
                 anchors {
                     left: lineNumber.right
-                    margins: 17
+                    margins: lineNumberPadding 
                 }
                 width: editor.width
                 height: editor.cursorRectangle.height
-                y: editor.cursorRectangle.y + 17
+                y: editor.cursorRectangle.y + lineNumberPadding
                 color: '#454545'
             }
 
             TextEdit {
                 id: editor
                 anchors { 
-                    margins: 17 //20; // 17 for iOS 
+                    margins: lineNumberPadding
                     left: lineNumber.right; right: parent.right; top: parent.top 
                 } 
                 wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
