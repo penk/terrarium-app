@@ -150,6 +150,7 @@ Window {
                     left: lineNumber.right
                     margins: lineNumberPadding 
                 }
+                visible: editor.focus
                 width: editor.width
                 height: editor.cursorRectangle.height
                 y: editor.cursorRectangle.y + lineNumberPadding
