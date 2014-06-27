@@ -141,11 +141,13 @@ img {
   margin: 10px 0 10px 0;
   border: 1px solid #ebebeb;
 
+  /*
   box-shadow: 0 0 5px #ebebeb;
   -webkit-box-shadow: 0 0 5px #ebebeb;
   -moz-box-shadow: 0 0 5px #ebebeb;
   -o-box-shadow: 0 0 5px #ebebeb;
   -ms-box-shadow: 0 0 5px #ebebeb;
+  */
 }
 
 p img {
@@ -315,11 +317,12 @@ Full-Width Styles
 
 #downloads {
   position: absolute;
-  width: 210px;
+  width: 350px;
   z-index: 10;
   bottom: -40px;
   right: 0;
   height: 70px;
+  padding-left: 10px;
   background: url('../images/icon_download.png') no-repeat 0% 90%;
 }
 
