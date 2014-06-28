@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = Terrarium
-QT += qml quick network
+QT += qml quick network sql
 webengine {
     QT += webengine
     DEFINES += USE_WEBENGINE
@@ -33,6 +33,7 @@ mac {
 
 ios {
     QMAKE_INFO_PLIST = ios/Info.plist
+    QTPLUGIN += qsqlite
 }
 
 #android {

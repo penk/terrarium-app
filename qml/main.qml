@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
 import HttpServer 1.0
-//import QtQuick.LocalStorage 2.0
+import QtQuick.LocalStorage 2.0
 import DocumentHandler 1.0
 
 Window {
@@ -25,11 +25,6 @@ Window {
         } else { 
             console.log('error loading http server')
         }
-
-    }
-
-    /*
-    Component.onCompleted: {
         var db = getDatabase();
         db.transaction(
                 function(tx) {
@@ -50,11 +45,10 @@ Window {
     }
 
     function getDatabase() {
-        var db = LocalStorage.openDatabaseSync("terrarium-app", "0.1", "history db", 100000);
+        var db = LocalStorage.openDatabaseSync("terrarium", "1.0", "file saving db", 100000);
         db.transaction(function(tx) {tx.executeSql('CREATE TABLE IF NOT EXISTS previous (editor TEXT)'); });
         return db;
     }
-    */
 
     Timer {
         id: timer
