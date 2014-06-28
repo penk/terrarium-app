@@ -28,10 +28,10 @@ int main(int argc, char *argv[])
     QWebEngine::initialize();
 #endif
 #if QT_VERSION > QT_VERSION_CHECK(5, 1, 0)
-    QQmlApplicationEngine engine(QUrl("qrc:///qml/playgrounds.qml"));
+    QQmlApplicationEngine engine(QUrl("qrc:///qml/main.qml"));
 #else
     QQuickView view;
-    view.setSource(QUrl("qrc:///qml/playgrounds.qml"));
+    view.setSource(QUrl("qrc:///qml/main.qml"));
     view.show();
 #endif 
     return app.exec();
