@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
-//import QtQuick.LocalStorage 2.0
 import HttpServer 1.0
+//import QtQuick.LocalStorage 2.0
 import DocumentHandler 1.0
 
 Window {
@@ -11,11 +11,27 @@ Window {
     visible: true
     title: "Terrarium - Live QML Editor and Viewer"
 
-    property variant lineNumberPadding: 20 // 17 for iOS 
-/*
+    // FIXME: build flag and detection 
+    property bool iOS: (Screen.width == 1024 || Screen.width == 768)
+    property variant lineNumberPadding: iOS ? 17 : 20 
+    property variant httpServer: {}
+    property variant httpd: {}
+
+    Component.onCompleted: {
+        httpServer = Qt.createComponent("HttpServer.qml");
+        if (httpServer.status == Component.Ready) {
+            httpd = httpServer.createObject(root, {'id': 'httpd'});
+            timer.running = true;
+        } else { 
+            console.log('error loading http server')
+        }
+
+    }
+
+    /*
     Component.onCompleted: {
         var db = getDatabase();
-            db.transaction(
+        db.transaction(
                 function(tx) {
                     var result = tx.executeSql("SELECT * FROM previous");
                     for (var i=0; i < result.rows.length; i++) {
@@ -23,8 +39,9 @@ Window {
                     }
                     tx.executeSql("DROP TABLE IF EXISTS previous");
                 }
-            );
+        );
     }
+
     Component.onDestruction: {
         var db = getDatabase();
         db.transaction(
@@ -37,28 +54,18 @@ Window {
         db.transaction(function(tx) {tx.executeSql('CREATE TABLE IF NOT EXISTS previous (editor TEXT)'); });
         return db;
     }
-*/
-    HttpServer {
-        id: server
-        Component.onCompleted: listen("127.0.0.1", 5000)
-        onNewRequest: { 
-            var route = /^\/\?/;
-            if ( route.test(request.url) ) {
-                response.writeHead(200)
-                response.write(editor.text)
-                response.end()
-            } 
-            else { 
-                response.writeHead(404)
-                response.end()
-            }
-        }
-    }
+    */
 
     Timer {
         id: timer
-        interval: 500; running: true; repeat: false
-        onTriggered: viewLoader.setSource('http://localhost:5000/?'+Math.random()) // workaround for cache
+        interval: 500; running: false; repeat: false
+        onTriggered: reloadView() 
+
+
+    }
+
+    function reloadView() {
+        viewLoader.setSource('http://localhost:5000/?'+Math.random()) // workaround for cache
     }
 
     Item {
@@ -81,7 +88,7 @@ Window {
 
             Text {
                 id: errorMessage
-                anchors { left: parent.left; leftMargin: 20; right: parent.right; rightMargin: 20; top: Screen.top; topMargin: 10 }
+                anchors { left: parent.left; right: parent.right; top: parent.top; margins: 20; topMargin: 10 }
                 font.pointSize: 20
                 wrapMode: Text.WordWrap
                 text: ""
@@ -95,11 +102,20 @@ Window {
             onStatusChanged: {
                 if (viewLoader.status == Loader.Error) {
                     errorMessage.text = viewLoader.errorString().replace(/http:\/\/localhost:5000\/\?.*?:/g, "Line: ");
+
+                    // restart http server when connection refused 
+                    var connectionRefused = /Connection refused/;
+                    if (connectionRefused.test(errorMessage.text)) {
+                        httpd.destroy();
+                        httpd = httpServer.createObject(root, {'id': 'httpd'});
+                        reloadView();
+                    }
+
                     errorLineNumber = errorMessage.text.match(/^Line: (.*?) /)[1];
                     lineNumberRepeater.itemAt(errorLineNumber - 1).bgcolor = 'red'
                 } else { 
                     errorMessage.text = ""; 
-                    if (errorLineNumber != 0)
+                    if (errorLineNumber > 0)
                     lineNumberRepeater.itemAt(errorLineNumber - 1).bgcolor = 'transparent'
                 }
             }
@@ -123,7 +139,7 @@ Window {
             Column {
                 id: lineNumber
                 anchors { margins: 20; left: parent.left; top: parent.top } 
-                spacing: -1  // 3 for iOS
+                spacing: iOS ? 3 : -1 
                 Repeater { 
                     id: lineNumberRepeater
                     model: editor.lineCount

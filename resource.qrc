@@ -1,5 +1,6 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource prefix="/"> 
     <file>qml/playgrounds.qml</file>
+    <file>qml/HttpServer.qml</file>
 </qresource>
 </RCC>
