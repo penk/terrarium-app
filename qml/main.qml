@@ -38,6 +38,10 @@ Window {
     }
 
     Component.onDestruction: {
+        saveContent();
+    }
+
+    function saveContent() {
         var db = getDatabase();
         db.transaction(
             function(tx) { tx.executeSql('insert into previous values (?);', editor.text); }
@@ -102,6 +106,7 @@ Window {
                     if (connectionRefused.test(errorMessage.text)) {
                         httpd.destroy();
                         httpd = httpServer.createObject(root, {'id': 'httpd'});
+                        saveContent();
                         reloadView();
                     }
 
