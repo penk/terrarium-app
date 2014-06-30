@@ -77,15 +77,13 @@ Copy `android/AndroidManifest.xml` and `android/res` to `../android-terrarium`, 
 
 ## LICENSE 
 
+Copyright © 2014 Ping-Hsun (penk) Chen <penkia@gmail.com>
 The source code is, unless otherwise specified, distributed under the terms of the MIT License. 
 
 ## CREDITS
 
-Copyright © 2014 Ping-Hsun (penk) Chen <penkia@gmail.com>
-
-Includes: 
-
 * [DocumentHandler](https://github.com/khertan/ownNotes) by Benoît HERVIER
 * [QMLHighligher](https://gitorious.org/aalperts-automatons/bragi) by Alan Alpert 
 * [QHttpServer](https://github.com/rschroll/qhttpserver) by Robert Schroll
+* [Font Awesome](http://fontawesome.io) by Dave Gandy 
 
