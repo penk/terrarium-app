@@ -17,6 +17,8 @@ Window {
     property variant httpServer: {}
     property variant httpd: {}
 
+    FontLoader { id: fontAwesome; source: "fontawesome-webfont.ttf" }
+
     Component.onCompleted: {
         httpServer = Qt.createComponent("HttpServer.qml");
         if (httpServer.status == Component.Ready) {
@@ -129,10 +131,10 @@ Window {
         color: '#1d1f21'
 
         Flickable {
-            anchors { fill: parent } 
+            anchors { fill: parent; bottomMargin: statusBar.height } 
             flickableDirection: Flickable.VerticalFlick
             contentWidth: parent.width
-            contentHeight: editor.height
+            contentHeight: editor.height + statusBar.height
             clip: true
 
             Column {
@@ -231,5 +233,8 @@ Window {
             } // end of editor
 
         }
+    }
+    StatusBar {
+        id: statusBar
     }
 }
