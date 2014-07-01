@@ -11,12 +11,17 @@ Window {
     visible: true
     title: "Terrarium - Live QML Editor and Viewer"
 
-    // FIXME: build flag and detection 
-    property bool iOS: (Screen.width == 1024 || Screen.width == 768)
-    property variant lineNumberPadding: iOS ? 17 : 20 
     property variant httpServer: {}
     property variant httpd: {}
     property bool splitView: true
+    property variant os_type: { '0': 'macx', '1': 'ios', '2': 'android', '3': 'linux', '4': 'default' }
+    property variant platformSetting: {
+        'ios': { 'lineNumberSpacing': 3, 'lineNumberPadding' : 17, 'defaultFont': 'Courier New' },
+        'macx': { 'lineNumberSpacing': -1, 'lineNumberPadding' : 20, 'defaultFont': 'Courier New' },
+        'android': { 'lineNumberSpacing': 0, 'lineNumberPadding' : 17, 'defaultFont': 'droid sans mono' },
+    }
+    property variant lineNumberPadding: platformSetting[os_type[platform]]['lineNumberPadding'] 
+    property variant lineNumberSpacing: platformSetting[os_type[platform]]['lineNumberSpacing'] 
 
     FontLoader { id: fontAwesome; source: "fontawesome-webfont.ttf" }
 
@@ -165,7 +170,7 @@ Window {
             Column {
                 id: lineNumber
                 anchors { margins: 20; left: parent.left; top: parent.top } 
-                spacing: iOS ? 3 : -1 
+                spacing: lineNumberSpacing
                 Repeater { 
                     id: lineNumberRepeater
                     model: editor.lineCount

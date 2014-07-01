@@ -40,11 +40,12 @@ int main(int argc, char *argv[])
     QWebEngine::initialize();
 #endif
 #if QT_VERSION > QT_VERSION_CHECK(5, 1, 0)
-    QQmlApplicationEngine engine(QUrl("qrc:///qml/main.qml"));
-    engine.rootContext()->setContextProperty("OS_TYPE", QVariant::fromValue(platformId));
+    QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("platform", QVariant::fromValue(platformId));
+    engine.load(QUrl("qrc:///qml/main.qml"));
 #else
     QQuickView view;
-    viewer.engine()->rootContext()->setContextProperty("OS_TYPE", QVariant::fromValue(platformId));
+    view.engine()->rootContext()->setContextProperty("platform", QVariant::fromValue(platformId));
     view.setSource(QUrl("qrc:///qml/main.qml"));
     view.show();
 #endif 
