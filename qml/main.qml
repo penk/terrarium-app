@@ -16,6 +16,7 @@ Window {
     property variant lineNumberPadding: iOS ? 17 : 20 
     property variant httpServer: {}
     property variant httpd: {}
+    property bool splitView: true
 
     FontLoader { id: fontAwesome; source: "fontawesome-webfont.ttf" }
 
@@ -69,9 +70,11 @@ Window {
     }
 
     Item {
+        id: view
+        state: "splited"
         width: root.width/2
         height: root.height
-        anchors { top: parent.top; left: background.right; bottom: parent.bottom }
+        anchors { top: parent.top; right: parent.right; bottom: parent.bottom }
 
         Rectangle {
             color: 'grey'
@@ -121,6 +124,28 @@ Window {
                 }
             }
         }
+
+        states: [
+            State{
+                name: "splited"
+                PropertyChanges { target: view; width: root.width/2 }
+                PropertyChanges { target: background; opacity: 1 }
+                PropertyChanges { target: background; visible: true }
+            },
+            State {
+                name: "fullscreen"
+                PropertyChanges { target: view; width: root.width }
+                PropertyChanges { target: background; opacity: 0 }
+                PropertyChanges { target: background; visible: false }
+            }
+        ]
+        transitions: [
+            Transition {
+                to: "*"
+                NumberAnimation { target: view; properties: "width"; duration: 300; easing.type: Easing.InOutQuad; }
+                NumberAnimation { target: background; properties: "opacity"; duration: 300; easing.type: Easing.InOutQuad; }
+            }
+        ]
     }
 
     Rectangle { 
@@ -131,10 +156,10 @@ Window {
         color: '#1d1f21'
 
         Flickable {
-            anchors { fill: parent; bottomMargin: statusBar.height } 
+            anchors { fill: parent; bottomMargin: bottomBar.height } 
             flickableDirection: Flickable.VerticalFlick
             contentWidth: parent.width
-            contentHeight: editor.height + statusBar.height
+            contentHeight: editor.height + bottomBar.height
             clip: true
 
             Column {
@@ -234,7 +259,8 @@ Window {
 
         }
     }
-    StatusBar {
-        id: statusBar
+    BottomBar {
+        id: bottomBar
     }
+
 }

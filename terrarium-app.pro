@@ -23,7 +23,7 @@ HEADERS += qhttpserver/src/qhttpserver.h \
     qhttpserver/src//qhttpconnection.h 
 
 INCLUDEPATH += ./qhttpserver/http-parser/
-RESOURCES += resource.qrc
+RESOURCES += assets.qrc
 
 mac {
     QMAKE_INFO_PLIST = mac/Info.plist

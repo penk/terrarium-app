@@ -2,7 +2,8 @@
 <qresource prefix="/"> 
     <file>qml/main.qml</file>
     <file>qml/HttpServer.qml</file>
-    <file>qml/StatusBar.qml</file>
+    <file>qml/BottomBar.qml</file>
+    <file>qml/CustomButton.qml</file>
     <file>qml/fontawesome-webfont.ttf</file>
 </qresource>
 </RCC>
