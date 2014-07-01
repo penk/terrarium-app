@@ -20,6 +20,18 @@ int main(int argc, char *argv[])
     app.setOrganizationName("terrariumapp");
     app.setOrganizationDomain("terrariumapp.com");
 
+#if defined(Q_OS_MACX)
+    int platformId = 0;
+#elif defined(Q_OS_IOS)
+    int platformId = 1;
+#elif defined(Q_OS_ANDROID)
+    int platformId = 2;
+#elif defined(Q_OS_LINUX)
+    int platformId = 3;
+#else
+    int platformId = 4;
+#endif 
+
     qmlRegisterType<QHttpServer>("HttpServer", 1, 0, "HttpServer");
     qmlRegisterType<DocumentHandler>("DocumentHandler", 1, 0, "DocumentHandler");
     qmlRegisterUncreatableType<QHttpRequest>("HttpServer", 1, 0, "HttpRequest", "Do not create HttpRequest directly");
@@ -29,8 +41,10 @@ int main(int argc, char *argv[])
 #endif
 #if QT_VERSION > QT_VERSION_CHECK(5, 1, 0)
     QQmlApplicationEngine engine(QUrl("qrc:///qml/main.qml"));
+    engine.rootContext()->setContextProperty("OS_TYPE", QVariant::fromValue(platformId));
 #else
     QQuickView view;
+    viewer.engine()->rootContext()->setContextProperty("OS_TYPE", QVariant::fromValue(platformId));
     view.setSource(QUrl("qrc:///qml/main.qml"));
     view.show();
 #endif 
