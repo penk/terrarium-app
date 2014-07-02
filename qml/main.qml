@@ -18,10 +18,11 @@ Window {
     property variant platformSetting: {
         'ios': { 'lineNumberSpacing': 3, 'lineNumberPadding' : 17, 'defaultFont': 'Courier New' },
         'macx': { 'lineNumberSpacing': -1, 'lineNumberPadding' : 20, 'defaultFont': 'Courier New' },
-        'android': { 'lineNumberSpacing': 0, 'lineNumberPadding' : 17, 'defaultFont': 'droid sans mono' },
+        'android': { 'lineNumberSpacing': 0, 'lineNumberPadding' : 20, 'defaultFont': 'Droid Sans Mono' },
     }
     property variant lineNumberPadding: platformSetting[os_type[platform]]['lineNumberPadding'] 
     property variant lineNumberSpacing: platformSetting[os_type[platform]]['lineNumberSpacing'] 
+    property variant scaleRatio: Screen.pixelDensity.toFixed(0) / 5 
 
     FontLoader { id: fontAwesome; source: "fontawesome-webfont.ttf" }
 
@@ -247,7 +248,7 @@ Window {
                 color: '#c5c8c6'
                 selectionColor: '#444444'
                 selectByMouse: true
-                font { pointSize: 18; family: 'Courier New' }
+                font { pointSize: 18; family: platformSetting[os_type[platform]]['defaultFont'] }
 
                 text: documentHandler.text
 
