@@ -19,6 +19,8 @@ Window {
         'ios': { 'lineNumberSpacing': 3, 'lineNumberPadding' : 17, 'defaultFont': 'Courier New' },
         'macx': { 'lineNumberSpacing': -1, 'lineNumberPadding' : 20, 'defaultFont': 'Courier New' },
         'android': { 'lineNumberSpacing': 0, 'lineNumberPadding' : 20, 'defaultFont': 'Droid Sans Mono' },
+        'linux': { 'lineNumberSpacing': 0, 'lineNumberPadding' : 20, 'defaultFont': 'Droid Sans Mono' },
+        'default': { 'lineNumberSpacing': 0, 'lineNumberPadding' : 20, 'defaultFont': 'Droid Sans Mono' },
     }
     property variant lineNumberPadding: platformSetting[os_type[platform]]['lineNumberPadding'] 
     property variant lineNumberSpacing: platformSetting[os_type[platform]]['lineNumberSpacing'] 
