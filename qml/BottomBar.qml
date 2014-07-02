@@ -6,9 +6,9 @@ Rectangle {
         left: background.left
         margins: splitView ? 0 : 5
     }
-    radius: 3
-    height: 44 
-    width: splitView ? background.width : 44 
+    radius: 3 * scaleRatio
+    height: (os_type[platform]=='android' ? 53 : 44 ) * scaleRatio
+    width: splitView ? background.width : 44 * scaleRatio
     gradient: Gradient {
         GradientStop { position: 0.0; color: "#EAEAEA" }
         GradientStop { position: 1.0; color: "#AAAAAA" }
@@ -27,7 +27,7 @@ Rectangle {
     CustomButton {
         id: exportButton
         visible: splitView ? true : false 
-        anchors { top: parent.top; right: parent.right }
+        anchors { top: parent.top; right: parent.right; }
         icon.text: "\uf1d8"
         defaultColor: Qt.darker("darkgray")
         onClicked: { 

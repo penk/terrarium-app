@@ -33,12 +33,4 @@ mac {
 
 ios {
     QMAKE_INFO_PLIST = ios/Info.plist
-    QTPLUGIN += qsqlite
 }
-
-#android {
-#    ANDROID_DEPLOYMENT_DEPENDENCIES += /plugins/platforms/android/libqtforandroid.so \
-#    qml/QtQuick/LocalStorage/libqmllocalstorageplugin.so \
-#    qml/QtQuick/LocalStorage/qmldir \
-#    plugins/sqldrivers/libqsqlite.so 
-#}
