@@ -3,17 +3,21 @@ Terrarium - Live QML Editor and Viewer
 
 ![Doge](http://www.terrariumapp.com/images/doge.png)
 
+Terrarium is a cross platform QML Playground! It monitors changes in its `TextEdit`, and triggers the view to reload source from the local http server. If you're looking for a file system watcher implementation, please refer to [QML LiveReload](https://github.com/penk/qml-livereload). 
+
+## Download
+
+* [iOS](https://itunes.apple.com/us/app/terrarium/id891232736?ls=1&mt=8)
+* [Android](https://play.google.com/store/apps/details?id=com.terrariumapp.penk.Terrarium)
+* [Mac OSX](http://goo.gl/EqEGvT)
+* [Ubuntu Linux](https://launchpad.net/~penk/+archive/touch/+files/terrarium_1.2.1_amd64.deb)
+* [Ubuntu Touch](http://goo.gl/jyoVwm)
+
 ## Build Instructions
 
     git clone https://github.com/penk/terrarium-app.git
     cd terrarium-app && git submodule init && git submodule update 
     qmake && make 
-
-## Usage
-
-    ./Terrarium
-
-Terrarium is a cross platform QML Playground! It monitors changes in its `TextEdit`, and triggers the view to reload source from the local http server. If you're looking for a file system watcher implementation, please refer to [QML LiveReload](https://github.com/penk/qml-livereload). 
 
 ## Platform Specific Instructions
 
@@ -67,7 +71,7 @@ Copy `android/AndroidManifest.xml` and `android/res` to `../android-terrarium`, 
         android-libTerrarium.so-deployment-settings.json \
         --output ../android-terrarium --release --sign ../TerrariumApp.keystore TerrariumApp
 
-## Tested Platforms
+## Screenshots 
 
 * [Android 4.4.2](http://i.imgur.com/771i80V.png)
 * [iOS 7.1](http://i.imgur.com/NezPpL9.png)
