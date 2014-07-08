@@ -3,9 +3,11 @@ Terrarium - Live QML Editor and Viewer
 
 ![Doge](http://www.terrariumapp.com/images/doge.png)
 
-Terrarium is a cross platform QML Playground! It monitors changes in its `TextEdit`, and triggers the view to reload source from the local http server. If you're looking for a file system watcher implementation, please refer to [QML LiveReload](https://github.com/penk/qml-livereload). 
+Terrarium is a cross platform QML Playground: the view renders lively as you type in the editor, makes prototyping and experimenting with [QtQuick](http://qt.digia.com/qtquick/) a lot more fun!  
 
-### More details at http://terrariumapp.com
+It monitors changes in its `TextEdit`, and triggers the view to reload source from the local http server. If you're looking for a file system watcher implementation, please refer to [QML LiveReload](https://github.com/penk/qml-livereload). 
+
+### More details on http://terrariumapp.com
 
 ## Download
 
