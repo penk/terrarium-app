@@ -5,6 +5,8 @@ Terrarium - Live QML Editor and Viewer
 
 Terrarium is a cross platform QML Playground! It monitors changes in its `TextEdit`, and triggers the view to reload source from the local http server. If you're looking for a file system watcher implementation, please refer to [QML LiveReload](https://github.com/penk/qml-livereload). 
 
+### More details at http://terrariumapp.com
+
 ## Download
 
 * [iOS](https://itunes.apple.com/us/app/terrarium/id891232736?ls=1&mt=8)
