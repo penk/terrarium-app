@@ -42,11 +42,11 @@ int main(int argc, char *argv[])
 #if QT_VERSION > QT_VERSION_CHECK(5, 1, 0)
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("platform", QVariant::fromValue(platformId));
-    engine.load(QUrl("qrc:///qml/main.qml"));
+    engine.load(QUrl("qrc:///main.qml"));
 #else
     QQuickView view;
     view.engine()->rootContext()->setContextProperty("platform", QVariant::fromValue(platformId));
-    view.setSource(QUrl("qrc:///qml/main.qml"));
+    view.setSource(QUrl("qrc:///main.qml"));
     view.show();
 #endif 
     return app.exec();

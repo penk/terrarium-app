@@ -6,9 +6,9 @@ webengine {
     DEFINES += USE_WEBENGINE
 }
 
-SOURCES += main.cpp \
-    qmlhighlighter.cpp \
-    documenthandler.cpp \
+SOURCES += src/main.cpp \
+    src/qmlhighlighter.cpp \
+    src/documenthandler.cpp \
     qhttpserver/src/qhttpconnection.cpp \
     qhttpserver/src/qhttprequest.cpp \
     qhttpserver/src/qhttpresponse.cpp \
@@ -18,12 +18,12 @@ SOURCES += main.cpp \
 HEADERS += qhttpserver/src/qhttpserver.h \
     qhttpserver/src//qhttpresponse.h \
     qhttpserver/src//qhttprequest.h \
-    qmlhighlighter.h \
-    documenthandler.h \
+    src/qmlhighlighter.h \
+    src/documenthandler.h \
     qhttpserver/src//qhttpconnection.h 
 
 INCLUDEPATH += ./qhttpserver/http-parser/
-RESOURCES += assets.qrc
+RESOURCES += qml/assets.qrc
 
 mac {
     QMAKE_INFO_PLIST = mac/Info.plist

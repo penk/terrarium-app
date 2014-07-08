@@ -1,0 +1,9 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/"> 
+    <file>main.qml</file>
+    <file>HttpServer.qml</file>
+    <file>BottomBar.qml</file>
+    <file>CustomButton.qml</file>
+    <file>fontawesome-webfont.ttf</file>
+</qresource>
+</RCC>
