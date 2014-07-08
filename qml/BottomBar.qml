@@ -8,18 +8,18 @@ Rectangle {
     }
     radius: 3 * scaleRatio
     height: (os_type[platform]=='android' ? 53 : 44 ) * scaleRatio
-    width: splitView ? background.width : 44 * scaleRatio
+    width: splitView ? background.width : 50 * scaleRatio
     gradient: Gradient {
-        GradientStop { position: 0.0; color: "#EAEAEA" }
-        GradientStop { position: 1.0; color: "#AAAAAA" }
+        GradientStop { position: 0.0; color: "#70787F" } 
+        GradientStop { position: 1.0; color: "#383C40" } 
     }
     CustomButton {
         id: viewSwitchButton
         anchors { top: parent.top; left: parent.left }
         icon.text: "\uf0db"
-        defaultColor: splitView ? "#286CE9" : Qt.darker("darkgray")
+        defaultColor: splitView ? "#FED146" : "#CAD8E5" 
         onClicked: { 
-            splitView = !splitView; icon.color = "#FED164"; 
+            splitView = !splitView; 
             if (splitView) view.state = "splited"
             else view.state = "fullscreen"
         } 
@@ -29,9 +29,7 @@ Rectangle {
         visible: splitView ? true : false 
         anchors { top: parent.top; right: parent.right; }
         icon.text: "\uf1d8"
-        defaultColor: Qt.darker("darkgray")
         onClicked: { 
-            defaultColor = Qt.darker("darkgray");
             Qt.openUrlExternally("mailto:?subject=Terrarium project&body="+editor.text); 
         }
     }
