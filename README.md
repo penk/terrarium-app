@@ -27,7 +27,7 @@ It monitors changes in its `TextEdit`, and triggers the view to reload source fr
 
 ### For Mac OSX/iOS
 
-To add icons to iOS build, first generate and open `Terrarium.xcodeproj`, switch AppIcon to use [Assets Catalog](https://developer.apple.com/library/ios/recipes/xcode_help-image_catalog-1.0/Recipe.html), then replace `Terrarium/Images.xcassets/` directory with `ios/Images.xcassets`. 
+To add icons to iOS build, first generate and open `Terrarium.xcodeproj`, switch AppIcon to use [Assets Catalog](https://developer.apple.com/library/ios/recipes/xcode_help-image_catalog-1.0/Recipe.html), then replace `Terrarium/Images.xcassets/` directory with `platform/ios/Images.xcassets`. 
 
 As for Mac OSX, refer to `macdeployqt` command in `terrarium-app.pro` file. 
 
@@ -46,14 +46,14 @@ If you're using Qt packages from apt archive instead of [qt-project.org](http://
 
     sudo apt-get install qt5-qmake qt5-default qtbase5-dev qtdeclarative5-dev build-essential
 
-All `debian/` package information can be found under `ubuntu/` directory, copy it to current path and build the package by:
+All `debian/` package information can be found under `platform/ubuntu/` directory, copy it to current path and build the package by:
 
     cp -r ubuntu/debian . 
     dpkg-buildpackage -b 
 
 If you're building click package, execute following command on device (for native compile):
 
-    cp ubuntu/* . 
+    cp platform/ubuntu/* . 
     click build . 
 
 And install it
@@ -69,7 +69,7 @@ First generate your keystore by `keytool`, then:
     make 
     make install INSTALL_ROOT=../android-terrarium
 
-Copy `android/AndroidManifest.xml` and `android/res` to `../android-terrarium`, build and sign apk by: 
+Copy `platform/android/AndroidManifest.xml` and `platform/android/res` to `../android-terrarium`, build and sign apk by: 
 
     ~/Qt5/5.3/android_armv7/bin/androiddeployqt --input \
         android-libTerrarium.so-deployment-settings.json \

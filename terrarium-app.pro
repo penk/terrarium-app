@@ -26,11 +26,11 @@ INCLUDEPATH += ./qhttpserver/http-parser/
 RESOURCES += qml/assets.qrc
 
 mac {
-    QMAKE_INFO_PLIST = mac/Info.plist
-    ICON = mac/icon.icns
+    QMAKE_INFO_PLIST = platform/mac/Info.plist
+    ICON = platform/mac/icon.icns
     #QMAKE_POST_LINK += macdeployqt Terrarium.app/ -qmldir=qml/ -verbose=1 -dmg
 }
 
 ios {
-    QMAKE_INFO_PLIST = ios/Info.plist
+    QMAKE_INFO_PLIST = platform/ios/Info.plist
 }
