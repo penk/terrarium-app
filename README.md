@@ -13,6 +13,7 @@ It monitors changes in its `TextEdit`, and triggers the view to reload source fr
 
 * [iOS](https://itunes.apple.com/us/app/terrarium/id891232736?ls=1&mt=8)
 * [Android](https://play.google.com/store/apps/details?id=com.terrariumapp.penk.Terrarium)
+* [Amazon](http://www.amazon.com/Terrarium-Live-QML-Code-Editor/dp/B00LLWAOPM)
 * [Mac OSX](http://goo.gl/EqEGvT)
 * [Ubuntu Linux](https://launchpad.net/~penk/+archive/touch/+files/terrarium_1.2.1_amd64.deb)
 * [Ubuntu Touch](http://goo.gl/jyoVwm)
