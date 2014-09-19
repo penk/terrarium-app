@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=500, user-scalable=no">>
+  <title>Editor</title>
+  <style type="text/css" media="screen">
+    body {
+        overflow: hidden;
+        background-color: #d3d3d3;
+    }
+    
+    #editor { 
+        margin: 0;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+  </style>
+</head>
+<body>
+
+<pre id="editor">import QtQuick 2.0
+
+Rectangle {
+    color: 'yellow'
+}
+</pre>
+    
+<script src="ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/twilight");
+    editor.getSession().setMode("ace/mode/javascript");
+    editor.getSession().setUseWorker(false)
+    editor.getSession().on("change", function(){
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", "http://127.0.0.1:5000/update?" + encodeURI(editor.getSession().getValue().replace(/#/g, '%23')), true);
+        xmlHttp.send();
+    });
+</script>
+
+</body>
+</html>

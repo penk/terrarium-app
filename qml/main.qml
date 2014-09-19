@@ -1,13 +1,9 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
-
-//FIXME: need a better way for app bundle 
-import QtWebKit 3.0
-import QtWebKit.experimental 1.0
+import QtGraphicalEffects 1.0
 
 import HttpServer 1.0
 import QtQuick.LocalStorage 2.0
-import DocumentHandler 1.0
 
 Window {
     id: root
@@ -51,6 +47,7 @@ Window {
                     tx.executeSql("DROP TABLE IF EXISTS previous");
                 }
         );
+        reloadView();
     }
 
     Component.onDestruction: {
@@ -74,12 +71,10 @@ Window {
         id: timer
         interval: 500; running: false; repeat: false
         onTriggered: reloadView() 
-
-
     }
 
     function reloadView() {
-        viewLoader.setSource('http://localhost:5000/?'+Math.random()) // workaround for cache
+        viewLoader.setSource('http://127.0.0.1:5000/?'+Math.random()) // workaround for cache
     }
 
     Item {
@@ -117,7 +112,7 @@ Window {
             property variant errorLineNumber: 0
             onStatusChanged: {
                 if (viewLoader.status == Loader.Error) {
-                    errorMessage.text = viewLoader.errorString().replace(/http:\/\/localhost:5000\/\?.*?:/g, "Line: ");
+                    errorMessage.text = viewLoader.errorString().replace(/http:\/\/127.0.0.1:5000\/\?.*?:/g, "Line: ");
 
                     // restart http server when connection refused 
                     var connectionRefused = /Connection refused/;
@@ -127,13 +122,8 @@ Window {
                         saveContent();
                         reloadView();
                     }
-
-                    errorLineNumber = errorMessage.text.match(/^Line: (.*?) /)[1];
-                    lineNumberRepeater.itemAt(errorLineNumber - 1).bgcolor = 'red'
                 } else { 
                     errorMessage.text = ""; 
-                    if (errorLineNumber > 0)
-                    lineNumberRepeater.itemAt(errorLineNumber - 1).bgcolor = 'transparent'
                 }
             }
         }
@@ -168,112 +158,32 @@ Window {
         anchors { top: parent.top; left: parent.left; bottom: parent.bottom }
         color: '#1d1f21'
 
-        Flickable {
-            anchors { fill: parent; bottomMargin: bottomBar.height } 
-            flickableDirection: Flickable.VerticalFlick
-            contentWidth: parent.width
-            contentHeight: editor.height + bottomBar.height
-            clip: true
-
-            Column {
-                id: lineNumber
-                anchors { margins: 20; left: parent.left; top: parent.top } 
-                spacing: lineNumberSpacing
-                Repeater { 
-                    id: lineNumberRepeater
-                    model: editor.lineCount
-                    Text { 
-                        property alias bgcolor: rect.color
-                        width: 20
-                        text: index + 1
-                        color: 'lightgray'
-                        font.pointSize: editor.font.pointSize 
-                        horizontalAlignment: TextEdit.AlignHCenter
-                        Rectangle {
-                            id: rect
-                            color: 'transparent'
-                            anchors.fill: parent
-                            opacity: 0.5
-                        }
-                    }
+        TextEdit {
+            id: editor
+            visible: false
+        }
+        Loader { 
+            id: webViewLoader
+            anchors { fill: parent; } //bottomMargin: bottomBar.height } 
+            source: "QtWebView.qml"
+            onStatusChanged: {
+                if (status == Loader.Error) {
+                    source = "QtWebKit.qml"
                 }
+                else if (status == Loader.Ready)
+                    load()
             }
-
-            Rectangle {
-                id: editorCurrentLineHighlight
-                anchors {
-                    left: lineNumber.right
-                    margins: lineNumberPadding 
-                }
-                visible: editor.focus
-                width: editor.width
-                height: editor.cursorRectangle.height
-                y: editor.cursorRectangle.y + lineNumberPadding
-                color: '#454545'
+            function load() {
+                // "http://ajaxorg.github.io/ace-builds/editor.html"
+                item.url = "http://127.0.0.1:5000/ace/ace.html"
             }
-
-            TextEdit {
-                id: editor
-                anchors { 
-                    margins: lineNumberPadding
-                    left: lineNumber.right; right: parent.right; top: parent.top 
-                } 
-                wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
-                renderType: Text.NativeRendering
-                onTextChanged: timer.restart(); 
-
-                // FIXME: stupid workaround for indent
-                Keys.onPressed: {
-                    if (event.key == Qt.Key_BraceRight) {
-                        editor.select(0, cursorPosition)
-                        var previousContent = editor.selectedText.split(/\r\n|\r|\n/)
-                        editor.deselect()
-                        var currentLine = previousContent[previousContent.length - 1]
-                        var leftBrace = /{/, rightBrace = /}/;
-                        if (!leftBrace.test(currentLine)) {
-                            editor.remove(cursorPosition, cursorPosition - currentLine.length);
-                            currentLine = currentLine.toString().replace(/ {1,4}$/, "");
-                            editor.insert(cursorPosition, currentLine);
-                        }
-                    }
-                }
-                Keys.onReturnPressed: {
-                    editor.select(0, cursorPosition)
-                    var previousContent = editor.selectedText.split(/\r\n|\r|\n/)
-                    editor.deselect()
-                    var currentLine = previousContent[previousContent.length - 1]
-                    var leftBrace = /{/, rightBrace = /}/;
-                    editor.insert(cursorPosition, "\n")
-                    var whitespaceAppend = currentLine.match(new RegExp(/^[ \t]*/))  // whitespace
-                    if (leftBrace.test(currentLine)) // indent
-                        whitespaceAppend += "    "; 
-                    editor.insert(cursorPosition, whitespaceAppend)
-                }
-
-                // style from Atom dark theme: 
-                // https://github.com/atom/atom-dark-syntax/blob/master/stylesheets/syntax-variables.less
-                color: '#c5c8c6'
-                selectionColor: '#444444'
-                selectByMouse: true
-                font { pointSize: 18; family: platformSetting[os_type[platform]]['defaultFont'] }
-
-                text: documentHandler.text
-
-                DocumentHandler {
-                    id: documentHandler
-                    target: editor
-                    Component.onCompleted: { 
-                        documentHandler.text = "import QtQuick 2.0\n\nRectangle { \n    color: '#FEEB75'" + 
-                            "\n    Text { \n        anchors.centerIn: parent" + 
-                            "\n        text: 'Hello, World!' \n    } \n}"
-                    }
-                }
-            } // end of editor
-
         }
     }
+    // FIXME: QtWebView overlay doesn't work 
+    /*
     BottomBar {
         id: bottomBar
     }
+    */
 
 }

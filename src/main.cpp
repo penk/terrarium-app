@@ -8,7 +8,6 @@
 #include "qhttpserver/src/qhttprequest.h"
 #include "qhttpserver/src/qhttpresponse.h"
 #include "qhttpserver/src/qhttpconnection.h"
-#include "documenthandler.h"
 #if USE_WEBENGINE
 #include <qtwebengineglobal.h>
 #endif
@@ -33,7 +32,6 @@ int main(int argc, char *argv[])
 #endif 
 
     qmlRegisterType<QHttpServer>("HttpServer", 1, 0, "HttpServer");
-    qmlRegisterType<DocumentHandler>("DocumentHandler", 1, 0, "DocumentHandler");
     qmlRegisterUncreatableType<QHttpRequest>("HttpServer", 1, 0, "HttpRequest", "Do not create HttpRequest directly");
     qmlRegisterUncreatableType<QHttpResponse>("HttpServer", 1, 0, "HttpResponse", "Do not create HttpResponse directly");
 #if USE_WEBENGINE

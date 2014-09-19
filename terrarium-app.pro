@@ -7,8 +7,6 @@ webengine {
 }
 
 SOURCES += src/main.cpp \
-    src/qmlhighlighter.cpp \
-    src/documenthandler.cpp \
     qhttpserver/src/qhttpconnection.cpp \
     qhttpserver/src/qhttprequest.cpp \
     qhttpserver/src/qhttpresponse.cpp \
@@ -18,8 +16,6 @@ SOURCES += src/main.cpp \
 HEADERS += qhttpserver/src/qhttpserver.h \
     qhttpserver/src//qhttpresponse.h \
     qhttpserver/src//qhttprequest.h \
-    src/qmlhighlighter.h \
-    src/documenthandler.h \
     qhttpserver/src//qhttpconnection.h 
 
 INCLUDEPATH += ./qhttpserver/http-parser/

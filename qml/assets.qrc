@@ -1,9 +1,15 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource prefix="/"> 
     <file>main.qml</file>
+    <file>QtWebKit.qml</file>
+    <file>QtWebView.qml</file>
     <file>HttpServer.qml</file>
     <file>BottomBar.qml</file>
     <file>CustomButton.qml</file>
     <file>fontawesome-webfont.ttf</file>
+    <file>ace/ace.html</file>
+    <file>ace/ace.js</file>
+    <file>ace/mode-javascript.js</file>
+    <file>ace/theme-twilight.js</file>
 </qresource>
 </RCC>
