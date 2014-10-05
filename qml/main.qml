@@ -18,7 +18,7 @@ Window {
 
     property variant httpServer: {}
     property variant httpd: {}
-    property bool splitView: true
+    property string splitState: 'splitted'
     property variant os_type: { '0': 'macx', '1': 'ios', '2': 'android', '3': 'linux', '4': 'default' }
     property variant platformSetting: {
         'ios': { 'lineNumberSpacing': 3, 'lineNumberPadding' : 17, 'defaultFont': 'Courier New' },
@@ -139,15 +139,30 @@ Window {
         }
 
         states: [
-            State{
+            State {
                 name: "splitted"
                 PropertyChanges { target: view; width: root.width/2 }
+                PropertyChanges { target: view; opacity: 1 }
+                PropertyChanges { target: view; visible: true }
+                PropertyChanges { target: background; width: root.width/2 }
                 PropertyChanges { target: background; opacity: 1 }
                 PropertyChanges { target: background; visible: true }
             },
             State {
-                name: "fullscreen"
+                name: "editor"
+                PropertyChanges { target: view; width: 0 }
+                PropertyChanges { target: view; opacity: 0 }
+                PropertyChanges { target: view; visible: false }
+                PropertyChanges { target: background; width: root.width }
+                PropertyChanges { target: background; opacity: 1 }
+                PropertyChanges { target: background; visible: true }
+            },
+            State {
+                name: "viewer"
                 PropertyChanges { target: view; width: root.width }
+                PropertyChanges { target: view; opacity: 1 }
+                PropertyChanges { target: view; visible: true }
+                PropertyChanges { target: background; width: 0 }
                 PropertyChanges { target: background; opacity: 0 }
                 PropertyChanges { target: background; visible: false }
             }
