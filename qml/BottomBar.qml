@@ -16,7 +16,7 @@ Rectangle {
     CustomButton {
         id: viewSwitchButton
         anchors { top: parent.top; left: parent.left }
-        icon.text: "\uf0db"
+        icon.text: splitState=='viewer' ? "\uf121" : "\uf0db"
         defaultColor: splitState =='splitted' ? "#FED146" : "#CAD8E5"
         onClicked: {
             if (splitState == 'splitted')
