@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
 
-//FIXME: need a better way for app bundle 
+//FIXME: need a better way for app bundle
 import QtWebKit 3.0
 import QtWebKit.experimental 1.0
 
@@ -18,7 +18,7 @@ Window {
 
     property variant httpServer: {}
     property variant httpd: {}
-    property bool splitView: true
+    property string splitState: 'splitted'
     property variant os_type: { '0': 'macx', '1': 'ios', '2': 'android', '3': 'linux', '4': 'default' }
     property variant platformSetting: {
         'ios': { 'lineNumberSpacing': 3, 'lineNumberPadding' : 17, 'defaultFont': 'Courier New' },
@@ -27,9 +27,9 @@ Window {
         'linux': { 'lineNumberSpacing': 0, 'lineNumberPadding' : 20, 'defaultFont': 'Droid Sans Mono' },
         'default': { 'lineNumberSpacing': 0, 'lineNumberPadding' : 20, 'defaultFont': 'Droid Sans Mono' },
     }
-    property variant lineNumberPadding: platformSetting[os_type[platform]]['lineNumberPadding'] 
-    property variant lineNumberSpacing: platformSetting[os_type[platform]]['lineNumberSpacing'] 
-    property variant scaleRatio: Screen.pixelDensity.toFixed(0) / 5 
+    property variant lineNumberPadding: platformSetting[os_type[platform]]['lineNumberPadding']
+    property variant lineNumberSpacing: platformSetting[os_type[platform]]['lineNumberSpacing']
+    property variant scaleRatio: Screen.pixelDensity.toFixed(0) / 5
 
     FontLoader { id: fontAwesome; source: "fontawesome-webfont.ttf" }
 
@@ -38,7 +38,7 @@ Window {
         if (httpServer.status == Component.Ready) {
             httpd = httpServer.createObject(root, {'id': 'httpd'});
             timer.running = true;
-        } else { 
+        } else {
             console.log('error loading http server')
         }
         var db = getDatabase();
@@ -73,7 +73,7 @@ Window {
     Timer {
         id: timer
         interval: 500; running: false; repeat: false
-        onTriggered: reloadView() 
+        onTriggered: reloadView()
 
 
     }
@@ -84,10 +84,11 @@ Window {
 
     Item {
         id: view
-        state: "splited"
+        state: "splitted"
         width: root.width/2
         height: root.height
         anchors { top: parent.top; right: parent.right; bottom: parent.bottom }
+        visible: opacity > 0 ? true : false
 
         Rectangle {
             color: 'grey'
@@ -96,7 +97,7 @@ Window {
             anchors.bottom: Screen.top
             anchors.bottomMargin: errorMessage.text == "" ? 0 : -height
             width: parent.width
-            height: errorMessage.height 
+            height: errorMessage.height
 
             Behavior on anchors.bottomMargin {
                 NumberAnimation { duration: 150; easing.type: Easing.OutQuad }
@@ -119,7 +120,7 @@ Window {
                 if (viewLoader.status == Loader.Error) {
                     errorMessage.text = viewLoader.errorString().replace(/http:\/\/localhost:5000\/\?.*?:/g, "Line: ");
 
-                    // restart http server when connection refused 
+                    // restart http server when connection refused
                     var connectionRefused = /Connection refused/;
                     if (connectionRefused.test(errorMessage.text)) {
                         httpd.destroy();
@@ -130,8 +131,8 @@ Window {
 
                     errorLineNumber = errorMessage.text.match(/^Line: (.*?) /)[1];
                     lineNumberRepeater.itemAt(errorLineNumber - 1).bgcolor = 'red'
-                } else { 
-                    errorMessage.text = ""; 
+                } else {
+                    errorMessage.text = "";
                     if (errorLineNumber > 0)
                     lineNumberRepeater.itemAt(errorLineNumber - 1).bgcolor = 'transparent'
                 }
@@ -139,37 +140,49 @@ Window {
         }
 
         states: [
-            State{
-                name: "splited"
+            State {
+                name: "splitted"
                 PropertyChanges { target: view; width: root.width/2 }
+                PropertyChanges { target: view; opacity: 1 }
+                PropertyChanges { target: background; width: root.width/2 }
                 PropertyChanges { target: background; opacity: 1 }
-                PropertyChanges { target: background; visible: true }
             },
             State {
-                name: "fullscreen"
+                name: "editor"
+                PropertyChanges { target: view; width: 0 }
+                PropertyChanges { target: view; opacity: 0 }
+                PropertyChanges { target: background; width: root.width }
+                PropertyChanges { target: background; opacity: 1 }
+            },
+            State {
+                name: "viewer"
                 PropertyChanges { target: view; width: root.width }
+                PropertyChanges { target: view; opacity: 1 }
+                PropertyChanges { target: background; width: 0 }
                 PropertyChanges { target: background; opacity: 0 }
-                PropertyChanges { target: background; visible: false }
             }
         ]
         transitions: [
             Transition {
                 to: "*"
                 NumberAnimation { target: view; properties: "width"; duration: 300; easing.type: Easing.InOutQuad; }
+                NumberAnimation { target: view; properties: "opacity"; duration: 300; easing.type: Easing.InOutQuad; }
+                NumberAnimation { target: background; properties: "width"; duration: 300; easing.type: Easing.InOutQuad; }
                 NumberAnimation { target: background; properties: "opacity"; duration: 300; easing.type: Easing.InOutQuad; }
             }
         ]
     }
 
-    Rectangle { 
+    Rectangle {
         id: background
         width: root.width/2
         height: root.height
         anchors { top: parent.top; left: parent.left; bottom: parent.bottom }
         color: '#1d1f21'
+        visible: opacity > 0 ? true : false
 
         Flickable {
-            anchors { fill: parent; bottomMargin: bottomBar.height } 
+            anchors { fill: parent; bottomMargin: bottomBar.height }
             flickableDirection: Flickable.VerticalFlick
             contentWidth: parent.width
             contentHeight: editor.height + bottomBar.height
@@ -177,17 +190,17 @@ Window {
 
             Column {
                 id: lineNumber
-                anchors { margins: 20; left: parent.left; top: parent.top } 
+                anchors { margins: 20; left: parent.left; top: parent.top }
                 spacing: lineNumberSpacing
-                Repeater { 
+                Repeater {
                     id: lineNumberRepeater
                     model: editor.lineCount
-                    Text { 
+                    Text {
                         property alias bgcolor: rect.color
                         width: 20
                         text: index + 1
                         color: 'lightgray'
-                        font.pointSize: editor.font.pointSize 
+                        font.pointSize: editor.font.pointSize
                         horizontalAlignment: TextEdit.AlignHCenter
                         Rectangle {
                             id: rect
@@ -203,7 +216,7 @@ Window {
                 id: editorCurrentLineHighlight
                 anchors {
                     left: lineNumber.right
-                    margins: lineNumberPadding 
+                    margins: lineNumberPadding
                 }
                 visible: editor.focus
                 width: editor.width
@@ -214,13 +227,13 @@ Window {
 
             TextEdit {
                 id: editor
-                anchors { 
+                anchors {
                     margins: lineNumberPadding
-                    left: lineNumber.right; right: parent.right; top: parent.top 
-                } 
+                    left: lineNumber.right; right: parent.right; top: parent.top
+                }
                 wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
                 renderType: Text.NativeRendering
-                onTextChanged: timer.restart(); 
+                onTextChanged: timer.restart();
 
                 // FIXME: stupid workaround for indent
                 Keys.onPressed: {
@@ -246,11 +259,11 @@ Window {
                     editor.insert(cursorPosition, "\n")
                     var whitespaceAppend = currentLine.match(new RegExp(/^[ \t]*/))  // whitespace
                     if (leftBrace.test(currentLine)) // indent
-                        whitespaceAppend += "    "; 
+                        whitespaceAppend += "    ";
                     editor.insert(cursorPosition, whitespaceAppend)
                 }
 
-                // style from Atom dark theme: 
+                // style from Atom dark theme:
                 // https://github.com/atom/atom-dark-syntax/blob/master/stylesheets/syntax-variables.less
                 color: '#c5c8c6'
                 selectionColor: '#444444'
@@ -262,9 +275,9 @@ Window {
                 DocumentHandler {
                     id: documentHandler
                     target: editor
-                    Component.onCompleted: { 
-                        documentHandler.text = "import QtQuick 2.0\n\nRectangle { \n    color: '#FEEB75'" + 
-                            "\n    Text { \n        anchors.centerIn: parent" + 
+                    Component.onCompleted: {
+                        documentHandler.text = "import QtQuick 2.0\n\nRectangle { \n    color: '#FEEB75'" +
+                            "\n    Text { \n        anchors.centerIn: parent" +
                             "\n        text: 'Hello, World!' \n    } \n}"
                     }
                 }
