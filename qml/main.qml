@@ -88,6 +88,7 @@ Window {
         width: root.width/2
         height: root.height
         anchors { top: parent.top; right: parent.right; bottom: parent.bottom }
+        visible: opacity > 0 ? true : false
 
         Rectangle {
             color: 'grey'
@@ -143,28 +144,22 @@ Window {
                 name: "splitted"
                 PropertyChanges { target: view; width: root.width/2 }
                 PropertyChanges { target: view; opacity: 1 }
-                PropertyChanges { target: view; visible: true }
                 PropertyChanges { target: background; width: root.width/2 }
                 PropertyChanges { target: background; opacity: 1 }
-                PropertyChanges { target: background; visible: true }
             },
             State {
                 name: "editor"
                 PropertyChanges { target: view; width: 0 }
                 PropertyChanges { target: view; opacity: 0 }
-                PropertyChanges { target: view; visible: false }
                 PropertyChanges { target: background; width: root.width }
                 PropertyChanges { target: background; opacity: 1 }
-                PropertyChanges { target: background; visible: true }
             },
             State {
                 name: "viewer"
                 PropertyChanges { target: view; width: root.width }
                 PropertyChanges { target: view; opacity: 1 }
-                PropertyChanges { target: view; visible: true }
                 PropertyChanges { target: background; width: 0 }
                 PropertyChanges { target: background; opacity: 0 }
-                PropertyChanges { target: background; visible: false }
             }
         ]
         transitions: [
@@ -184,6 +179,7 @@ Window {
         height: root.height
         anchors { top: parent.top; left: parent.left; bottom: parent.bottom }
         color: '#1d1f21'
+        visible: opacity > 0 ? true : false
 
         Flickable {
             anchors { fill: parent; bottomMargin: bottomBar.height }
