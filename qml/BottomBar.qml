@@ -4,11 +4,11 @@ Rectangle {
     anchors {
         bottom: parent.bottom
         left: background.left
-        margins: splitState=='splitted' ? 0 : 5
+        margins: splitState=='viewer' ? 5 : 0
     }
     radius: 3 * scaleRatio
     height: (os_type[platform]=='android' ? 53 : 44 ) * scaleRatio
-    width: splitState=='splitted' ? background.width : 50 * scaleRatio
+    width: splitState=='viewer' ? 50 * scaleRatio : background.width
     gradient: Gradient {
         GradientStop { position: 0.0; color: "#70787F" }
         GradientStop { position: 1.0; color: "#383C40" }
@@ -30,7 +30,7 @@ Rectangle {
     }
     CustomButton {
         id: exportButton
-        visible: splitState =='splitted' ? true : false
+        visible: splitState != 'viewer'
         anchors { top: parent.top; right: parent.right; }
         icon.text: "\uf1d8"
         onClicked: {

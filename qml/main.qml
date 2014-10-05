@@ -171,6 +171,8 @@ Window {
             Transition {
                 to: "*"
                 NumberAnimation { target: view; properties: "width"; duration: 300; easing.type: Easing.InOutQuad; }
+                NumberAnimation { target: view; properties: "opacity"; duration: 300; easing.type: Easing.InOutQuad; }
+                NumberAnimation { target: background; properties: "width"; duration: 300; easing.type: Easing.InOutQuad; }
                 NumberAnimation { target: background; properties: "opacity"; duration: 300; easing.type: Easing.InOutQuad; }
             }
         ]
