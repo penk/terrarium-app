@@ -30,3 +30,8 @@ Makefile*
 *.app
 *.dmg
 *deployment-settings.json
+
+# Project files
+Terrarium
+Terrarium.build
+Terrarium.xcodeproj
