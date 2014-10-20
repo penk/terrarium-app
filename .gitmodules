@@ -1,3 +1,4 @@
 [submodule "qhttpserver"]
 	path = qhttpserver
 	url = https://github.com/rschroll/qhttpserver.git
+        ignore = dirty
