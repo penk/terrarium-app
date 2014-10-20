@@ -5,5 +5,7 @@
     <file>BottomBar.qml</file>
     <file>CustomButton.qml</file>
     <file>fontawesome-webfont.ttf</file>
+    <file>QtWebKit.qml</file>
+    <file>QtWebView.qml</file>
 </qresource>
 </RCC>

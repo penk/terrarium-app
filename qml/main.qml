@@ -1,10 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
 
-//FIXME: need a better way for app bundle
-import QtWebKit 3.0
-import QtWebKit.experimental 1.0
-
 import HttpServer 1.0
 import QtQuick.LocalStorage 2.0
 import DocumentHandler 1.0
