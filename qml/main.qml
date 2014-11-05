@@ -70,8 +70,6 @@ Window {
         id: timer
         interval: 500; running: false; repeat: false
         onTriggered: reloadView()
-
-
     }
 
     function reloadView() {
@@ -130,7 +128,7 @@ Window {
                 } else {
                     errorMessage.text = "";
                     if (errorLineNumber > 0)
-                    lineNumberRepeater.itemAt(errorLineNumber - 1).bgcolor = 'transparent'
+                        lineNumberRepeater.itemAt(errorLineNumber - 1).bgcolor = 'transparent'
                 }
             }
         }
