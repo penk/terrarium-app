@@ -49,7 +49,8 @@ If you're using Qt packages from apt archive instead of [qt-project.org](http://
 
 All `debian/` package information can be found under `platform/ubuntu/` directory, copy it to current path and build the package by:
 
-    cp -r ubuntu/debian . 
+    cp -r platform/ubuntu/debian .
+    cp platform/ubuntu/terrarium.desktop .
     dpkg-buildpackage -b 
 
 If you're building click package, execute following command on device (for native compile):
