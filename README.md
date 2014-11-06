@@ -65,13 +65,17 @@ And install it
 
 ### For Android 
 
-First generate your keystore by `keytool`, then:
+First generate your keystore by `keytool`
+
+    keytool -genkey -v -keystore ../TerrariumApp.keystore -alias TerrariumApp -keyalg RSA -keysize 2048 -validity 10000
+
+then
 
     ~/Qt5/5.3/android_armv7/bin/qmake
     make 
     make install INSTALL_ROOT=../android-terrarium
 
-Copy `platform/android/AndroidManifest.xml` and `platform/android/res` to `../android-terrarium`, build and sign apk by: 
+Build and sign apk by:
 
     ~/Qt5/5.3/android_armv7/bin/androiddeployqt --input \
         android-libTerrarium.so-deployment-settings.json \
