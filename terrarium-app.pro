@@ -30,6 +30,7 @@ android {
 }
 
 mac {
+    QMAKE_MAC_SDK = macosx10.10
     QMAKE_INFO_PLIST = platform/mac/Info.plist
     ICON = platform/mac/icon.icns
     #QMAKE_POST_LINK += macdeployqt Terrarium.app/ -qmldir=qml/ -verbose=1 -dmg
