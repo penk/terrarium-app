@@ -49,7 +49,8 @@ If you're using Qt packages from apt archive instead of [qt-project.org](http://
 
 All `debian/` package information can be found under `platform/ubuntu/` directory, copy it to current path and build the package by:
 
-    cp -r ubuntu/debian . 
+    cp -r platform/ubuntu/debian .
+    cp platform/ubuntu/terrarium.desktop .
     dpkg-buildpackage -b 
 
 If you're building click package, execute following command on device (for native compile):
@@ -64,13 +65,17 @@ And install it
 
 ### For Android 
 
-First generate your keystore by `keytool`, then:
+First generate your keystore by `keytool`
+
+    keytool -genkey -v -keystore ../TerrariumApp.keystore -alias TerrariumApp -keyalg RSA -keysize 2048 -validity 10000
+
+then
 
     ~/Qt5/5.3/android_armv7/bin/qmake
     make 
     make install INSTALL_ROOT=../android-terrarium
 
-Copy `platform/android/AndroidManifest.xml` and `platform/android/res` to `../android-terrarium`, build and sign apk by: 
+Build and sign apk by:
 
     ~/Qt5/5.3/android_armv7/bin/androiddeployqt --input \
         android-libTerrarium.so-deployment-settings.json \

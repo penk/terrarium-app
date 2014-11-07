@@ -25,6 +25,10 @@ HEADERS += qhttpserver/src/qhttpserver.h \
 INCLUDEPATH += ./qhttpserver/http-parser/
 RESOURCES += qml/assets.qrc
 
+android {
+    ANDROID_PACKAGE_SOURCE_DIR = ./platform/android
+}
+
 mac {
     QMAKE_INFO_PLIST = platform/mac/Info.plist
     ICON = platform/mac/icon.icns
