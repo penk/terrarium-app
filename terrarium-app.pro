@@ -29,7 +29,7 @@ android {
     ANDROID_PACKAGE_SOURCE_DIR = ./platform/android
 }
 
-mac {
+macx {
     QMAKE_MAC_SDK = macosx10.10
     QMAKE_INFO_PLIST = platform/mac/Info.plist
     ICON = platform/mac/icon.icns
