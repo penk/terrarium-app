@@ -78,7 +78,7 @@ Window {
 
     Item {
         id: view
-        state: "splitted"
+        state: root.splitState
         width: root.width/2
         height: root.height
         anchors { top: parent.top; right: parent.right; bottom: parent.bottom }
