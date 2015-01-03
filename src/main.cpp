@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<QHttpRequest>("HttpServer", 1, 0, "HttpRequest", "Do not create HttpRequest directly");
     qmlRegisterUncreatableType<QHttpResponse>("HttpServer", 1, 0, "HttpResponse", "Do not create HttpResponse directly");
 #if USE_WEBENGINE
-    QWebEngine::initialize();
+    QtWebEngine::initialize();
 #endif
 #if QT_VERSION > QT_VERSION_CHECK(5, 1, 0)
     QQmlApplicationEngine engine;
