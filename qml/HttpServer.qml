@@ -12,7 +12,7 @@ HttpServer {
             response.end()
             reloadView();
         }
-        else if (request.url.toString().match(/^\/ace/)) {
+        else if (request.url.toString().match(/^\/codemirror/)) {
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "qrc://"+request.path, true);
             xhr.onreadystatechange = function()

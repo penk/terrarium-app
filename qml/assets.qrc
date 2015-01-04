@@ -7,9 +7,12 @@
     <file>BottomBar.qml</file>
     <file>CustomButton.qml</file>
     <file>fontawesome-webfont.ttf</file>
-    <file>ace/ace.html</file>
-    <file>ace/ace.js</file>
-    <file>ace/mode-javascript.js</file>
-    <file>ace/theme-twilight.js</file>
+    <file>codemirror/index.html</file>
+    <file>codemirror/lib/codemirror.css</file>
+    <file>codemirror/lib/codemirror.js</file>
+    <file>codemirror/mode/javascript/javascript.js</file>
+    <file>codemirror/theme/ambiance.css</file>
+    <file>codemirror/addon/selection/active-line.js</file>
+    <file>codemirror/addon/edit/matchbrackets.js</file>
 </qresource>
 </RCC>

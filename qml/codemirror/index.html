@@ -1,0 +1,43 @@
+<!doctype html>
+
+<title>Editor</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=500, user-scalable=no">
+
+<link rel="stylesheet" href="lib/codemirror.css">
+<link rel="stylesheet" href="theme/ambiance.css">
+
+<style type="text/css" media="screen">
+    body {
+        overflow: hidden;
+        background-color: #1d1f21;
+    }
+</style>
+<script src="lib/codemirror.js"></script>
+<script src="mode/javascript/javascript.js"></script>
+<script src="addon/selection/active-line.js"></script>
+<script src="addon/edit/matchbrackets.js"></script>
+
+<article>
+<form><textarea id="code" name="code" rows="5">
+import QtQuick 2.0
+
+Rectangle {
+    color: '#FEEB75'
+}
+</textarea></form>
+<script>
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        styleActiveLine: true,
+        matchBrackets: true,
+        theme: "ambiance"
+    });
+    editor.setSize("100%", "100%");
+    editor.on("change", function(cm, change) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", "http://127.0.0.1:5000/update?" + encodeURI(editor.getValue().replace(/#/g, '%23')), true);
+        xmlHttp.send();
+    });
+</script>
+</article>

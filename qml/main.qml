@@ -175,7 +175,7 @@ Window {
             }
             function load() {
                 // "http://ajaxorg.github.io/ace-builds/editor.html"
-                item.url = "http://127.0.0.1:5000/ace/ace.html"
+                item.url = "http://127.0.0.1:5000/codemirror/index.html"
             }
         }
     }
