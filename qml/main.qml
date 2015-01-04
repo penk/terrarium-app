@@ -265,6 +265,7 @@ Window {
                 font { pointSize: 18; family: platformSetting[os_type[platform]]['defaultFont'] }
 
                 text: documentHandler.text
+                inputMethodHints: Qt.ImhNoPredictiveText
 
                 DocumentHandler {
                     id: documentHandler
