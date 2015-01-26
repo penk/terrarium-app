@@ -4,11 +4,11 @@ Rectangle {
     anchors {
         bottom: parent.bottom
         left: background.left
-        margins: splitState=='viewer' ? 5 : 0
+        margins: 5 * scaleRatio 
     }
-    radius: 3 * scaleRatio
-    height: (os_type[platform]=='android' ? 53 : 44 ) * scaleRatio
-    width: splitState=='viewer' ? 50 * scaleRatio : background.width
+    radius: 0.5 * height
+    height: 50 * scaleRatio
+    width: height 
     gradient: Gradient {
         GradientStop { position: 0.0; color: "#70787F" }
         GradientStop { position: 1.0; color: "#383C40" }
@@ -26,15 +26,6 @@ Rectangle {
             else
                 splitState = 'splitted';
             view.state = splitState;
-        }
-    }
-    CustomButton {
-        id: exportButton
-        visible: splitState != 'viewer'
-        anchors { top: parent.top; right: parent.right; }
-        icon.text: "\uf1d8"
-        onClicked: {
-            Qt.openUrlExternally("mailto:?subject=Terrarium project&body="+editor.text);
         }
     }
 }
