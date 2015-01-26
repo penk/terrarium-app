@@ -14,7 +14,7 @@ Window {
 
     property variant httpServer: {}
     property variant httpd: {}
-    property string splitState: 'splitted'
+    property string splitState: (root.width * scaleRatio > 600) ? 'splitted' : 'editor'
     property variant os_type: { '0': 'macx', '1': 'ios', '2': 'android', '3': 'linux', '4': 'default' }
     property variant platformSetting: {
         'ios': { 'lineNumberSpacing': 3, 'lineNumberPadding' : 17, 'defaultFont': 'Courier New' },
