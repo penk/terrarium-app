@@ -16,15 +16,24 @@ Rectangle {
     CustomButton {
         id: viewSwitchButton
         anchors { top: parent.top; left: parent.left }
-        icon.text: if (splitState=='viewer') { "\uf121" } else if (splitState=='editor') { "\uf0db" } else { "\uf144" }
+        // "\uf121" : fa-code, to editor
+        // "\uf0db" : fa-columns, to splitted view
+        // "\uf144" : fa-play-circle, to viewer 
+        icon.text: 
+            if (splitState=='viewer' && root.width * scaleRatio > 600) { "\uf0db" } 
+            else if (splitState=='viewer') { "\uf121" } 
+            else if (splitState=='editor') { "\uf144" } 
+            else if (splitState=='splitted') { "\uf121" }
+            else "\uf144"
         defaultColor: "#CAD8E5"
         onClicked: {
-            if (splitState == 'splitted')
+            // splitted -> editor -> viewer 
+            if (splitState == 'editor')
                 splitState = 'viewer';
-            else if (splitState == 'viewer')
-                splitState = 'editor';
-            else 
+            else if (splitState == 'viewer' && root.width * scaleRatio > 600)
                 splitState = 'splitted';
+            else 
+                splitState = 'editor';
 
             view.state = splitState;
         }
