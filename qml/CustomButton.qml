@@ -10,7 +10,7 @@ Item {
     Text {
         id: buttonIcon
         anchors.centerIn: parent
-        font { family: fontAwesome.name; pointSize: 26 }
+        font { family: fontAwesome.name; pointSize: os_type[platform] == 'ios' ? 32 : 26 }
         color: defaultColor
         MouseArea {
             anchors.fill: parent
