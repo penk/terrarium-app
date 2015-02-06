@@ -15,8 +15,9 @@ Rectangle {
     }
     CustomButton {
         id: viewSwitchButton
-        anchors { top: parent.top; left: parent.left }
-        anchors.margins: os_type[platform] == 'ios' ? 12 : 0
+        anchors.fill: parent
+        //anchors { top: parent.top; left: parent.left }
+        anchors.margins: -20 //os_type[platform] == 'ios' ? 12 : 0
         // "\uf121" : fa-code, to editor
         // "\uf0db" : fa-columns, to splitted view
         // "\uf144" : fa-play-circle, to viewer 
