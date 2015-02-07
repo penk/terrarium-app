@@ -10,7 +10,7 @@ Window {
     width: Screen.width
     height: Screen.height
     visible: true
-    title: "Terrarium - Live QML Editor and Viewer"
+    title: "Terrarium - The Most Interactive Prototyping Tool"
 
     property variant httpServer: {}
     property variant httpd: {}

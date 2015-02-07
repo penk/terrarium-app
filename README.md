@@ -82,7 +82,7 @@ Build and sign apk by:
 
 ## LICENSE 
 
-Copyright © 2014 Ping-Hsun (penk) Chen <penkia@gmail.com>  
+Copyright © 2014-2015 Ping-Hsun (penk) Chen <penkia@gmail.com>  
 The source code is, unless otherwise specified, distributed under the terms of the MIT License. 
 
 ## CREDITS
