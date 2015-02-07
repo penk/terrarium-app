@@ -4,13 +4,18 @@
   <head>
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Terrarium - Live QML Editor and Viewer" />
+    <meta name="description" content="Terrarium - The Most Interactive UI Prototyping Tool" />
     <link rel="shortcut icon" href="favicon.ico">
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
     <script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
     <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+
     <script>
         jQuery(document).ready(function ($) {
             $('.fancybox').fancybox({
@@ -21,7 +26,78 @@
         });
     </script>
 
-    <title>Terrarium - Live QML Editor and Viewer</title>
+    <style>
+        body,
+        input {
+            font-family: "open-sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        .form-email {
+            left: 0;
+        }
+        .form-email input {
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 320px;
+        }
+        @media screen and (min-width: 500px) {
+            .form-email input {
+                width: 210px;
+            }
+            .form-email input[type="submit"] {
+                position: relative;
+                left: -1px;
+            }
+        }
+        input {
+            padding: 10px;
+            margin: 0;
+            border: none;
+            outline: none;
+            -webkit-appearance: none;
+            border-radius: 0;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+        }
+        input[type="text"],
+        input[type="email"] {
+            border: 1px solid #ccc;
+            padding: 10px; font-size: 18px; line-height: 1.6;
+        }
+        input[type="submit"] {
+            background: #218bc3;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            border: 1px solid transparent;
+            padding: 10px 20px;
+            -webkit-appearance: none;
+        }
+        input[type="submit"]:hover {
+            background: #1e7fb2;
+        }
+        input[type="submit"]:active {
+            background: #165c82;
+        }
+        .feature-icon {
+            display: inline-block;
+            /*margin-left: 50px;*/
+            width: 80px;
+            height: 80px;
+            border: solid 2px #007edf;
+            border-radius: 50%;
+            vertical-align: top;
+            text-align: center;
+            font-size: 25px;
+            line-height: 80px;
+        }
+        .feature-icon i {
+            color: #007edf
+        }
+        .feature-content {
+            text-align: center;
+        }
+    </style>
+    <title>Terrarium - The Most Interactive UI Prototyping Tool</title>
   </head>
 
   <body>
@@ -29,21 +105,27 @@
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <a id="forkme_banner" href="https://github.com/penk/terrarium-app">View on GitHub</a>
           <a href="http://terrariumapp.com" style="text-decoration: none">
-          <img src="icons/terrarium-app-rounded-256.png" style="border: 0px; width: 128px; float: left; box-shadow: 0 0 0px; !important; margin-top: -5px; margin-right: 5px;">
+              <img src="icons/terrarium-app-rounded-256.png" style="border: 0px; width: 128px; float: left; box-shadow: 0 0 0px; !important; margin-top: -5px; margin-right: 15px;">
           <h1 id="project_title">Terrarium</h1>
       </a>
-          <h2 id="project_tagline">Live QML Editor and Viewer</h2>
-          <section id="downloads">
-        
-<ul>
+          <h2 id="project_tagline">The Most Interactive UI Prototyping Tool</h2>
+
+    <p style="color: lightgrey; margin-top: 40px">
+    Terrarium is a QML Playgrounds: the view renders lively as you type in the editor, makes prototyping and experimenting with QtQuick a lot more fun!
+    </p>
+    <ul style="position:relative;
+            left:50%; margin-bottom: -40px">
     <li style="display: inline">
     <a href="https://itunes.apple.com/us/app/terrarium/id891232736?ls=1&mt=8"><img src="images/apple.png" style="width: 150px; border: 0" width="150"></a>
     <li style="display: inline">
     <a href="https://play.google.com/store/apps/details?id=com.terrariumapp.penk.Terrarium"><img src="images/google.png" style="width: 150px; border: 0" width="150" /></a>
 </ul>
-          </section>
+
+    <a class="fancybox" href="http://i.imgur.com/MCA641U.gif">
+    <img src="images/window.png" style="box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); border: 0; padding: 0; max-width: 100%; bottom: -46px" draggable="false">
+    <img src="images/play-button.png" style="float: left; margin-top: -220px; border: 0; margin-left: 35%">
+</a>
         </header>
     </div>
 
@@ -51,26 +133,63 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
 
-      <p>
-      <a class="fancybox" href="http://i.imgur.com/MCA641U.gif">
-          <img src="http://i.imgur.com/VuY9Zoc.png" alt="playgrounds" style="margin-left: -40px; margin-top: 20px">
-          <!--<img src="http://i.imgur.com/aQrfjKl.png" alt="playgrounds" style="margin-left: -40px; margin-top: 0px">-->
-      </a>
-      </p>
+      <div class="container-fluid">
+            <div class="row-fluid" style="width: 700px; margin-left: -20px">
+                <ul class="thumbnails">
+                    <li class="span4" style="text-align: center">
+                    <div class="feature-icon">
+                        <i class="fa fa-cloud-download"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Productive</h3>
+                        <p>
+                        Everything you need to start playing with Qt
+                        </p>
+                    </div>
+                    </li>
 
-      <p>Download for mobile: <a href="https://itunes.apple.com/us/app/terrarium/id891232736?ls=1&mt=8">iOS</a>, <a href="https://play.google.com/store/apps/details?id=com.terrariumapp.penk.Terrarium">Android</a>, <a href="http://www.amazon.com/Terrarium-Live-QML-Code-Editor/dp/B00LLWAOPM">Amazon</a>; also available on desktop for <a href="http://goo.gl/EqEGvT">Mac OSX</a>, <a href="https://launchpad.net/~penk/+archive/touch/+files/terrarium_1.2.1_amd64.deb">Ubuntu Linux</a>, and <a href="https://github.com/penk/terrarium-app">source code on Github</a>.
-      <h2><a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>About</h2>
-</p>
-      <p>Terrarium is a QML Playgrounds: the view renders lively as you type in the editor, makes prototyping and experimenting with <a href="http://qt.digia.com/qtquick/">QtQuick</a> a lot more fun!</p>
-<p>This project is under MIT License. Feel free to download the <a href="images/MediaKit.zip">MediaKit</a>, or <a href="mailto:penkia@gmail.com">Contact Us</a>
-</p>
+                    <li class="span4" style="text-align: center">
+                    <div class="feature-icon" style="font-size: 28px">
+                        <i class="fa fa-rocket"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Instant</h3>
+                        <p>
+                        Provides visual feedback instantly
+                        </p>
+                    </div>
+                    </li>
+
+                    <li class="span4" style="text-align: center">
+                    <div class="feature-icon">
+                        <i class="fa fa-paper-plane"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Touch</h3>
+                        <p>
+                        Designed and built with mobile in mind
+                        </p>
+                    </div>
+                    </li>
+
+                </ul>
+            </div>
+      </div>
+
+      <p>Terrarium is an open source project under MIT License, find out more details <a href="https://github.com/penk/terrarium-app">on Github</a>. <br>
+      Feel free to download the <a href="images/MediaKit.zip">Media Kit</a>, or <a href="mailto:penkia@gmail.com">Contact Us</a>. For news and updates, sign up below:</p>
+<form class="form-email" id="form-email" action="https://docs.google.com/forms/d/1sMQD26gRvsaU3DSkhRS-Fk9D7veMICti4XXa3m__ciA/formResponse" method="POST" target="_blank">
+    <p style="text-align: center">
+    <input type="email" name="entry.462062166" placeholder="Email address"><input type="submit" value="Keep me posted"><input type="hidden" value="1" name="embed">
+    </p>
+</form>
       </section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-      <p class="copyright">Copyright © 2014-2015 Ping-Hsun (penk) Chen</p>
+      <p class="copyright" style="text-align: center">Copyright © 2014-2015 <a href="http://twitter.com/penk">Penk Chen</a></p>
       </footer>
     </div>
 
