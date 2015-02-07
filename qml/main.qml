@@ -276,6 +276,20 @@ Window {
                             "\n        text: 'Hello, World!' \n    } \n}"
                     }
                 }
+
+                // FIXME: add selection / copy / paste popup
+                MouseArea {
+                    id: handler
+                    anchors.fill: parent
+                    propagateComposedEvents: true
+                    onPressed: {
+                        editor.cursorPosition = parent.positionAt(mouse.x, mouse.y);
+                        editor.focus = true
+                    }
+                    onPressAndHold: {
+                        editor.paste()
+                    }
+                }
             } // end of editor
 
         }
