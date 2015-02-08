@@ -48,7 +48,7 @@
         }
         @media screen and (min-width: 500px) {
             .form-email input {
-                width: 210px;
+                width: 180px;
             }
             .form-email input[type="submit"] {
                 position: relative;
@@ -70,7 +70,8 @@
             border: 1px solid #ccc;
             padding: 10px; font-size: 18px; line-height: 1.6;
         }
-        input[type="submit"] {
+        input[type="submit"],
+        input[type="button"] {
             background: #218bc3;
             color: #fff;
             text-transform: uppercase;
@@ -83,6 +84,12 @@
             background: #1e7fb2;
         }
         input[type="submit"]:active {
+            background: #165c82;
+        }
+        input[type="button"]:hover {
+            background: #1e7fb2;
+        }
+        input[type="button"]:active {
             background: #165c82;
         }
         .feature-icon {
@@ -103,6 +110,14 @@
         .feature-content {
             text-align: center;
         }
+        .h {
+            padding: 0 5px;
+            display: inline-block;
+            vertical-align: top;
+            height: 44px;
+            line-height: 44px;
+            padding-bottom: 60px;
+        }
     </style>
     <title>Terrarium - The Most Interactive UI Prototyping Tool</title>
   </head>
@@ -121,7 +136,7 @@
     <p style="color: lightgrey; margin-top: 40px">
     Terrarium is a QML Playgrounds: the view renders lively as you type in the editor, makes prototyping and experimenting with QtQuick a lot more fun!
     </p>
-    <ul style="position:relative; width: 400px;
+    <ul style="position:relative; width: 330px;
             left:45%; margin-bottom: -40px; margin-right: 0;">
     <li style="display: inline">
     <a href="https://itunes.apple.com/us/app/terrarium/id891232736?ls=1&mt=8"><img src="images/apple.png" style="width: 150px; border: 0" width="150"></a>
@@ -168,13 +183,13 @@
                     </li>
 
                     <li class="span4" style="text-align: center">
-                    <div class="feature-icon">
-                        <i class="fa fa-paper-plane"></i>
+                    <div class="feature-icon" style="font-size: 32px">
+                        <i class="fa fa-tablet"></i>
                     </div>
                     <div class="feature-content">
                         <h3>Touch</h3>
                         <p>
-                        Designed and built with mobile in mind
+                        Designed and built with mobile users in mind
                         </p>
                     </div>
                     </li>
@@ -183,19 +198,32 @@
             </div>
       </div>
 
-      <p>Terrarium is an open source project under MIT License, find out more details <a href="https://github.com/penk/terrarium-app">on Github</a>. Feel free to grab the <a href="images/MediaKit.zip">media kit</a> or <a href="mailto:penkia@gmail.com">contact us</a>. For news and updates, sign up below:</p>
+      <p>Terrarium is an open source project, find out more details <a href="https://github.com/penk/terrarium-app">on Github</a>. Feel free to grab the <a href="images/MediaKit.zip">media kit</a> or tweet us <a href="http://twitter.com/terrariumapp" target="_blank">@Terrariumapp</a>. For news and updates, sign up below.</p>
+
+<div class="wrapper">
+  <div class="h">
 <form class="form-email" id="form-email" action="https://docs.google.com/forms/d/1sMQD26gRvsaU3DSkhRS-Fk9D7veMICti4XXa3m__ciA/formResponse" method="POST" target="_blank">
     <p style="text-align: center">
     <input type="email" name="entry.462062166" placeholder="Email address"><input type="submit" value="Keep me posted"><input type="hidden" value="1" name="embed">
     </p>
 </form>
+  </div>
+
+  <div class="h"><p style="padding-top: 20px; margin-left: -10px">or</p></div>
+  <div class="h">
+      <p style="padding-top: 17px; margin-left: 10px;">
+      <a href="https://github.com/penk/terrarium-app#download"><input type="button" value="Download"></a>
+      </p>
+  </div>
+</div>
+
       </section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-      <p class="copyright" style="text-align: center">Copyright © 2014-2015 <a href="http://twitter.com/penk">Penk Chen</a>. All Rights Reserved.</p>
+      <p class="copyright" style="text-align: center">© <a href="mailto:penkia+terrariumapp@gmail.com">Penk Chen</a> 2015. From Taiwan with love.</p>
       </footer>
     </div>
 
