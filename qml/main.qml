@@ -17,7 +17,7 @@ Window {
     property string splitState: (root.width * scaleRatio > 600) ? 'splitted' : 'editor'
     property variant os_type: { '0': 'macx', '1': 'ios', '2': 'android', '3': 'linux', '4': 'default' }
     property variant platformSetting: {
-        'ios': { 'lineNumberSpacing': 3, 'lineNumberPadding' : 17, 'defaultFont': 'Courier New' },
+        'ios': { 'lineNumberSpacing': -1, 'lineNumberPadding' : 20, 'defaultFont': 'Courier New' },
         'macx': { 'lineNumberSpacing': -1, 'lineNumberPadding' : 20, 'defaultFont': 'Courier New' },
         'android': { 'lineNumberSpacing': 0, 'lineNumberPadding' : 20, 'defaultFont': 'Droid Sans Mono' },
         'linux': { 'lineNumberSpacing': 0, 'lineNumberPadding' : 20, 'defaultFont': 'Droid Sans Mono' },
@@ -78,6 +78,7 @@ Window {
 
     NaviBar {
         id: navibar 
+        z: 2
     }
 
     Item {
@@ -164,9 +165,7 @@ Window {
             Transition {
                 to: "*"
                 NumberAnimation { target: view; properties: "width"; duration: 300; easing.type: Easing.InOutQuad; }
-                NumberAnimation { target: view; properties: "opacity"; duration: 300; easing.type: Easing.InOutQuad; }
                 NumberAnimation { target: background; properties: "width"; duration: 300; easing.type: Easing.InOutQuad; }
-                NumberAnimation { target: background; properties: "opacity"; duration: 300; easing.type: Easing.InOutQuad; }
             }
         ]
     }
