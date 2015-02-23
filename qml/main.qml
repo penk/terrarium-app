@@ -180,10 +180,10 @@ Window {
         visible: opacity > 0 ? true : false
 
         Flickable {
-            anchors { fill: parent; bottomMargin: bottomBar.height }
+            anchors { fill: parent; }
             flickableDirection: Flickable.VerticalFlick
             contentWidth: parent.width
-            contentHeight: editor.height + bottomBar.height
+            contentHeight: editor.height
             clip: true
 
             Column {
@@ -284,6 +284,8 @@ Window {
                 // FIXME: add selection / copy / paste popup
                 MouseArea {
                     id: handler
+                    // FIXME: disable on desktop
+                    enabled: os_type[platform] != 'macx'
                     anchors.fill: parent
                     propagateComposedEvents: true
                     onPressed: {
@@ -305,8 +307,10 @@ Window {
         anchors.top: navibar.bottom
         height: 6
     }
+    /*
     BottomBar {
         id: bottomBar
     }
+    */
 
 }
