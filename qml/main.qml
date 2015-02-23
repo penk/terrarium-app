@@ -76,15 +76,8 @@ Window {
         viewLoader.setSource('http://localhost:5000/?'+Math.random()) // workaround for cache
     }
 
-    Rectangle {
+    NaviBar {
         id: navibar 
-        width: parent.width
-        height: 44 * scaleRatio
-        anchors {
-            top: parent.top
-            left: parent.left
-        }
-        color: "white"
     }
 
     Item {
@@ -304,6 +297,13 @@ Window {
             } // end of editor
 
         }
+    }
+    Image {
+        fillMode: Image.TileHorizontally
+        source: "shadow.png"
+        width: navibar.width
+        anchors.top: navibar.bottom
+        height: 6
     }
     BottomBar {
         id: bottomBar
