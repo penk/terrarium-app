@@ -10,7 +10,7 @@ Window {
     width: Screen.width
     height: Screen.height
     visible: true
-    title: "Terrarium - The Most Interactive Prototyping Tool"
+    title: "Terrarium - UI Prototyping Tool for Coders"
 
     property variant httpServer: {}
     property variant httpd: {}
