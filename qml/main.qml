@@ -76,12 +76,23 @@ Window {
         viewLoader.setSource('http://localhost:5000/?'+Math.random()) // workaround for cache
     }
 
+    Rectangle {
+        id: navibar 
+        width: parent.width
+        height: 44 * scaleRatio
+        anchors {
+            top: parent.top
+            left: parent.left
+        }
+        color: "white"
+    }
+
     Item {
         id: view
         state: root.splitState
         width: root.width/2
         height: root.height
-        anchors { top: parent.top; right: parent.right; bottom: parent.bottom }
+        anchors { top: navibar.bottom; right: parent.right; bottom: parent.bottom; }
         visible: opacity > 0 ? true : false
 
         Rectangle {
@@ -171,7 +182,7 @@ Window {
         id: background
         width: root.width/2
         height: root.height
-        anchors { top: parent.top; left: parent.left; bottom: parent.bottom }
+        anchors { top: navibar.bottom; left: parent.left; bottom: parent.bottom }
         color: '#1d1f21'
         visible: opacity > 0 ? true : false
 
