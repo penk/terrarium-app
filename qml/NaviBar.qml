@@ -95,7 +95,7 @@ Rectangle {
         anchors {
             left: parent.left
             verticalCenter: parent.verticalCenter
-            margins: 20
+            margins: 10
         }
         font { family: fontAwesome.name; pointSize: 26 }
         text: "\uf057"
