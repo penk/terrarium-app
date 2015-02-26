@@ -10,14 +10,14 @@ Window {
     width: Screen.width
     height: Screen.height
     visible: true
-    title: "Terrarium - The Most Interactive Prototyping Tool"
+    title: "Terrarium - UI Prototyping Tool for Coders"
 
     property variant httpServer: {}
     property variant httpd: {}
     property string splitState: (root.width * scaleRatio > 600) ? 'splitted' : 'editor'
     property variant os_type: { '0': 'macx', '1': 'ios', '2': 'android', '3': 'linux', '4': 'default' }
     property variant platformSetting: {
-        'ios': { 'lineNumberSpacing': 3, 'lineNumberPadding' : 17, 'defaultFont': 'Courier New' },
+        'ios': { 'lineNumberSpacing': -1, 'lineNumberPadding' : 20, 'defaultFont': 'Courier New' },
         'macx': { 'lineNumberSpacing': -1, 'lineNumberPadding' : 20, 'defaultFont': 'Courier New' },
         'android': { 'lineNumberSpacing': 0, 'lineNumberPadding' : 20, 'defaultFont': 'Droid Sans Mono' },
         'linux': { 'lineNumberSpacing': 0, 'lineNumberPadding' : 20, 'defaultFont': 'Droid Sans Mono' },
@@ -76,12 +76,18 @@ Window {
         viewLoader.setSource('http://localhost:5000/?'+Math.random()) // workaround for cache
     }
 
+    NaviBar {
+        state: "view"
+        id: navibar 
+        z: 2
+    }
+
     Item {
         id: view
         state: root.splitState
         width: root.width/2
         height: root.height
-        anchors { top: parent.top; right: parent.right; bottom: parent.bottom }
+        anchors { top: navibar.bottom; right: parent.right; bottom: parent.bottom; }
         visible: opacity > 0 ? true : false
 
         Rectangle {
@@ -160,9 +166,7 @@ Window {
             Transition {
                 to: "*"
                 NumberAnimation { target: view; properties: "width"; duration: 300; easing.type: Easing.InOutQuad; }
-                NumberAnimation { target: view; properties: "opacity"; duration: 300; easing.type: Easing.InOutQuad; }
                 NumberAnimation { target: background; properties: "width"; duration: 300; easing.type: Easing.InOutQuad; }
-                NumberAnimation { target: background; properties: "opacity"; duration: 300; easing.type: Easing.InOutQuad; }
             }
         ]
     }
@@ -171,15 +175,15 @@ Window {
         id: background
         width: root.width/2
         height: root.height
-        anchors { top: parent.top; left: parent.left; bottom: parent.bottom }
+        anchors { top: navibar.bottom; left: parent.left; bottom: parent.bottom }
         color: '#1d1f21'
         visible: opacity > 0 ? true : false
 
         Flickable {
-            anchors { fill: parent; bottomMargin: bottomBar.height }
+            anchors { fill: parent; }
             flickableDirection: Flickable.VerticalFlick
             contentWidth: parent.width
-            contentHeight: editor.height + bottomBar.height
+            contentHeight: editor.height
             clip: true
 
             Column {
@@ -229,6 +233,11 @@ Window {
                 renderType: Text.NativeRendering
                 onTextChanged: timer.restart();
 
+                onSelectedTextChanged: {
+                    if (editor.selectedText === "") {
+                        navibar.state = 'view'
+                    }
+                }
                 // FIXME: stupid workaround for indent
                 Keys.onPressed: {
                     if (event.key == Qt.Key_BraceRight) {
@@ -260,7 +269,7 @@ Window {
                 // style from Atom dark theme:
                 // https://github.com/atom/atom-dark-syntax/blob/master/stylesheets/syntax-variables.less
                 color: '#c5c8c6'
-                selectionColor: '#444444'
+                selectionColor: '#0C75BC'
                 selectByMouse: true
                 font { pointSize: 18; family: platformSetting[os_type[platform]]['defaultFont'] }
 
@@ -280,22 +289,38 @@ Window {
                 // FIXME: add selection / copy / paste popup
                 MouseArea {
                     id: handler
+                    // FIXME: disable on desktop
+                    enabled: os_type[platform] != 'macx'
                     anchors.fill: parent
                     propagateComposedEvents: true
                     onPressed: {
                         editor.cursorPosition = parent.positionAt(mouse.x, mouse.y);
                         editor.focus = true
+                        navibar.state = 'view'
                     }
                     onPressAndHold: {
-                        editor.paste()
+                        navibar.state = 'selection'
+                    }
+                    onDoubleClicked: {
+                        editor.selectWord()
+                        navibar.state = 'selection'
                     }
                 }
             } // end of editor
 
         }
     }
+    Image {
+        fillMode: Image.TileHorizontally
+        source: "shadow.png"
+        width: navibar.width
+        anchors.top: navibar.bottom
+        height: 6
+    }
+    /*
     BottomBar {
         id: bottomBar
     }
+    */
 
 }

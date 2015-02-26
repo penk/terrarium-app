@@ -3,8 +3,10 @@
     <file>main.qml</file>
     <file>HttpServer.qml</file>
     <file>BottomBar.qml</file>
+    <file>NaviBar.qml</file>
     <file>CustomButton.qml</file>
     <file>fontawesome-webfont.ttf</file>
+    <file>shadow.png</file>
     <file>QtWebKit.qml</file>
     <file>QtWebView.qml</file>
 </qresource>
