@@ -77,6 +77,7 @@ Window {
     }
 
     NaviBar {
+        state: "view"
         id: navibar 
         z: 2
     }
@@ -232,6 +233,11 @@ Window {
                 renderType: Text.NativeRendering
                 onTextChanged: timer.restart();
 
+                onSelectedTextChanged: {
+                    if (editor.selectedText === "") {
+                        navibar.state = 'view'
+                    }
+                }
                 // FIXME: stupid workaround for indent
                 Keys.onPressed: {
                     if (event.key == Qt.Key_BraceRight) {
@@ -263,7 +269,7 @@ Window {
                 // style from Atom dark theme:
                 // https://github.com/atom/atom-dark-syntax/blob/master/stylesheets/syntax-variables.less
                 color: '#c5c8c6'
-                selectionColor: '#444444'
+                selectionColor: '#0C75BC'
                 selectByMouse: true
                 font { pointSize: 18; family: platformSetting[os_type[platform]]['defaultFont'] }
 
@@ -290,9 +296,14 @@ Window {
                     onPressed: {
                         editor.cursorPosition = parent.positionAt(mouse.x, mouse.y);
                         editor.focus = true
+                        navibar.state = 'view'
                     }
                     onPressAndHold: {
-                        editor.paste()
+                        navibar.state = 'selection'
+                    }
+                    onDoubleClicked: {
+                        editor.selectWord()
+                        navibar.state = 'selection'
                     }
                 }
             } // end of editor

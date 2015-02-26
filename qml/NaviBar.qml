@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtGraphicalEffects 1.0
 
 Rectangle {
+    id: navigationBar
     width: parent.width
     height: 44 * scaleRatio
     anchors {
@@ -63,6 +64,7 @@ Rectangle {
         radius: 5
     }
     OpacityMask {
+        visible: (parent.state === 'view')
         anchors.fill: repeater
         source: repeater
         maskSource: mask
@@ -70,6 +72,7 @@ Rectangle {
 
     Row {
         anchors.centerIn: parent
+        visible: (parent.state === 'view')
         MouseArea {
             width: 90
             height: 29
@@ -86,4 +89,91 @@ Rectangle {
             onPressed: splitState = 'viewer'
         }
     }
+
+    Text {
+        visible: (parent.state == 'selection')
+        anchors {
+            left: parent.left
+            verticalCenter: parent.verticalCenter
+            margins: 20
+        }
+        font { family: fontAwesome.name; pointSize: 26 }
+        text: "\uf057"
+        color: 'grey'
+        MouseArea {
+            anchors.fill: parent
+            anchors.margins: -5 
+            onPressed: { navigationBar.state = 'view' }
+        }
+    }
+
+    Row {
+        anchors.centerIn: parent
+        visible: (parent.state === 'selection')
+        spacing: 30
+        Text {
+            visible: (editor.selectionStart !== editor.selectionEnd)
+            color: "#007edf"
+            font.pointSize: 17
+            text: "Cut"
+            MouseArea {
+                anchors.fill: parent
+                anchors.margins: -5
+                onPressed: editor.cut()
+            }
+        }
+        Text {
+            visible: (editor.selectionStart !== editor.selectionEnd)
+            color: "#007edf"
+            font.pointSize: 17
+            text: "Copy"
+            MouseArea {
+                anchors.fill: parent
+                anchors.margins: -5
+                onPressed: editor.copy()
+            }
+        }
+        Text {
+            visible: (editor.selectionStart === editor.selectionEnd)
+            color: "#007edf"
+            font.pointSize: 17
+            text: "Select"
+            MouseArea {
+                anchors.fill: parent
+                anchors.margins: -5
+                onPressed: editor.selectWord()
+            }
+        }
+        Text {
+            visible: (editor.selectionStart === editor.selectionEnd)
+            color: "#007edf"
+            font.pointSize: 17
+            text: "Select All"
+            MouseArea {
+                anchors.fill: parent
+                anchors.margins: -5
+                onPressed: editor.selectAll()
+            }
+        }
+        Text {
+            visible: (editor.canPaste === true)
+            color: "#007edf"
+            font.pointSize: 17
+            text: "Paste"
+            MouseArea {
+                anchors.fill: parent
+                anchors.margins: -5
+                onPressed: editor.paste()
+            }
+        }
+    }
+
+    states: [
+        State { 
+            name: "view"
+        },
+        State {
+            name: "selection"
+        }
+    ]
 }
