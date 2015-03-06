@@ -14,15 +14,15 @@ Rectangle {
     Rectangle {
         id: repeater
         border.color: "#007edf"
-        width: 270
-        height: 29
+        width: 270 * scaleRatio
+        height: 29 * scaleRatio 
         anchors.centerIn: parent 
-        radius: 5
+        radius: 5 
         smooth: true
         visible: false
         Row {
             Rectangle {
-                width: 90; height: 29
+                width: 90 *scaleRatio ; height: 29 * scaleRatio
                 color: splitState == 'editor' ? "#007edf" : "transparent"
                 Text {
                     text: "Editor"
@@ -32,7 +32,7 @@ Rectangle {
                 }
             }
             Rectangle {
-                width: 90; height: 29
+                width: 90 * scaleRatio; height: 29 * scaleRatio
                 border.width: 1
                 border.color: "#007edf"
                 color: splitState == 'splitted' ? "#007edf" : "transparent"
@@ -44,7 +44,7 @@ Rectangle {
                 }
             }
             Rectangle {
-                width: 90; height: 29
+                width: 90 * scaleRatio; height: 29 * scaleRatio
                 color: splitState == 'viewer' ? "#007edf" : "transparent"
                 Text {
                     text: "Viewer"
@@ -74,18 +74,18 @@ Rectangle {
         anchors.centerIn: parent
         visible: (parent.state === 'view')
         MouseArea {
-            width: 90
-            height: 29
+            width: 90 * scaleRatio
+            height: 29 * scaleRatio
             onPressed: splitState = 'editor'
         }
         MouseArea {
-            width: 90
-            height: 29
+            width: 90 * scaleRatio
+            height: 29 * scaleRatio
             onPressed: splitState = 'splitted'
         }
         MouseArea {
-            width: 90
-            height: 29
+            width: 90 * scaleRatio
+            height: 29 * scaleRatio
             onPressed: splitState = 'viewer'
         }
     }
@@ -95,14 +95,14 @@ Rectangle {
         anchors {
             left: parent.left
             verticalCenter: parent.verticalCenter
-            margins: 10
+            margins: 10 * scaleRatio 
         }
         font { family: fontAwesome.name; pointSize: 26 }
         text: "\uf057"
         color: 'grey'
         MouseArea {
             anchors.fill: parent
-            anchors.margins: -5 
+            anchors.margins: -5 * scaleRatio
             onPressed: { 
                 navigationBar.state = 'view'; 
                 editor.deselect();
@@ -113,7 +113,7 @@ Rectangle {
     Row {
         anchors.centerIn: parent
         visible: (parent.state === 'selection')
-        spacing: 30
+        spacing: 30 * scaleRatio
         Text {
             visible: (editor.selectionStart !== editor.selectionEnd)
             color: "#007edf"
@@ -121,7 +121,7 @@ Rectangle {
             text: "Cut"
             MouseArea {
                 anchors.fill: parent
-                anchors.margins: -5
+                anchors.margins: -5 * scaleRatio
                 onPressed: editor.cut()
             }
         }
@@ -132,7 +132,7 @@ Rectangle {
             text: "Copy"
             MouseArea {
                 anchors.fill: parent
-                anchors.margins: -5
+                anchors.margins: -5 * scaleRatio
                 onPressed: editor.copy()
             }
         }
@@ -143,7 +143,7 @@ Rectangle {
             text: "Select"
             MouseArea {
                 anchors.fill: parent
-                anchors.margins: -5
+                anchors.margins: -5 * scaleRatio
                 onPressed: editor.selectWord()
             }
         }
@@ -154,7 +154,7 @@ Rectangle {
             text: "Select All"
             MouseArea {
                 anchors.fill: parent
-                anchors.margins: -5
+                anchors.margins: -5 * scaleRatio
                 onPressed: editor.selectAll()
             }
         }
@@ -165,7 +165,7 @@ Rectangle {
             text: "Paste"
             MouseArea {
                 anchors.fill: parent
-                anchors.margins: -5
+                anchors.margins: -5 * scaleRatio
                 onPressed: editor.paste()
             }
         }

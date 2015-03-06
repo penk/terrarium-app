@@ -297,6 +297,7 @@ Window {
                         editor.cursorPosition = parent.positionAt(mouse.x, mouse.y);
                         editor.focus = true
                         navibar.state = 'view'
+                        Qt.inputMethod.show();
                     }
                     onPressAndHold: {
                         navibar.state = 'selection'
@@ -317,10 +318,4 @@ Window {
         anchors.top: navibar.bottom
         height: 6
     }
-    /*
-    BottomBar {
-        id: bottomBar
-    }
-    */
-
 }
