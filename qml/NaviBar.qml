@@ -6,7 +6,7 @@ Rectangle {
     width: parent.width
     height: 44 * scaleRatio
     anchors {
-        top: parent.top
+        bottom: parent.bottom
         left: parent.left
     }
     color: "white"

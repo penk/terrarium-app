@@ -87,7 +87,7 @@ Window {
         state: root.splitState
         width: root.width/2
         height: root.height
-        anchors { top: navibar.bottom; right: parent.right; bottom: parent.bottom; }
+        anchors { top: parent.top; right: parent.right; bottom: navibar.top; }
         visible: opacity > 0 ? true : false
 
         Rectangle {
@@ -175,7 +175,7 @@ Window {
         id: background
         width: root.width/2
         height: root.height
-        anchors { top: navibar.bottom; left: parent.left; bottom: parent.bottom }
+        anchors { top: parent.top; left: parent.left; bottom: navibar.top}
         color: '#1d1f21'
         visible: opacity > 0 ? true : false
 
@@ -301,6 +301,7 @@ Window {
                     }
                     onPressAndHold: {
                         navibar.state = 'selection'
+                        Qt.inputMethod.hide();
                     }
                     onDoubleClicked: {
                         editor.selectWord()
@@ -315,7 +316,7 @@ Window {
         fillMode: Image.TileHorizontally
         source: "shadow.png"
         width: navibar.width
-        anchors.top: navibar.bottom
+        anchors.bottom: navibar.top
         height: 6
     }
 }
