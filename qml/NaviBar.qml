@@ -133,7 +133,10 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 anchors.margins: -5 * scaleRatio
-                onPressed: editor.copy()
+                onPressed: { 
+                    editor.copy()
+                    editor.deselect()
+                }
             }
         }
         Text {
