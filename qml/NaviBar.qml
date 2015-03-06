@@ -103,7 +103,10 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
             anchors.margins: -5 
-            onPressed: { navigationBar.state = 'view' }
+            onPressed: { 
+                navigationBar.state = 'view'; 
+                editor.deselect();
+            }
         }
     }
 
