@@ -1,6 +1,7 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource prefix="/"> 
     <file>main.qml</file>
+    <file>Menu.qml</file>
     <file>HttpServer.qml</file>
     <file>BottomBar.qml</file>
     <file>NaviBar.qml</file>

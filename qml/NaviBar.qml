@@ -17,7 +17,7 @@ Rectangle {
         width: 240 * scaleRatio
         height: 29 * scaleRatio 
         anchors.centerIn: parent 
-        radius: 5 
+        radius: 5 * scaleRatio
         smooth: true
         visible: false
         Row {
@@ -61,10 +61,10 @@ Rectangle {
         width: repeater.width
         height: repeater.height
         anchors.fill: repeater
-        radius: 5
+        radius: 5 * scaleRatio
     }
     OpacityMask {
-        visible: (parent.state === 'view')
+        visible: (parent.state === 'view' && menu.state !== 'show' )
         anchors.fill: repeater
         source: repeater
         maskSource: mask
@@ -72,7 +72,7 @@ Rectangle {
 
     Row {
         anchors.centerIn: parent
-        visible: (parent.state === 'view')
+        visible: (parent.state === 'view' && menu.state !== 'show')
         MouseArea {
             width: 80 * scaleRatio
             height: 29 * scaleRatio
@@ -89,6 +89,26 @@ Rectangle {
             onPressed: splitState = 'viewer'
         }
     }
+
+    Text {
+        id: backButton
+        visible: (parent.state != 'selection' && menu.state !== 'show')
+        anchors {
+            left: parent.left
+            verticalCenter: parent.verticalCenter
+            margins: 10 * scaleRatio
+        }
+        font { family: fontAwesome.name; pointSize: 26 }
+        text: "\uf053"
+        color: 'grey'
+        MouseArea {
+            anchors.fill: parent
+            anchors.margins: -5 * scaleRatio
+            onPressed: { // TODO: save project 
+                menu.state = "show"
+            }
+        }
+    } 
 
     Text {
         visible: (parent.state == 'selection')

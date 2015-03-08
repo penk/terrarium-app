@@ -42,7 +42,7 @@ Window {
                 function(tx) {
                     var result = tx.executeSql("SELECT * FROM previous");
                     for (var i=0; i < result.rows.length; i++) {
-                        editor.text = result.rows.item(i).editor
+                        editor.text = result.rows.item(i).id
                     }
                     tx.executeSql("DROP TABLE IF EXISTS previous");
                 }
@@ -62,7 +62,8 @@ Window {
 
     function getDatabase() {
         var db = LocalStorage.openDatabaseSync("terrarium", "1.0", "file saving db", 100000);
-        db.transaction(function(tx) {tx.executeSql('CREATE TABLE IF NOT EXISTS previous (editor TEXT)'); });
+        db.transaction(function(tx) {tx.executeSql('CREATE TABLE IF NOT EXISTS previous (id TEXT)'); });
+        db.transaction(function(tx) {tx.executeSql('CREATE TABLE IF NOT EXISTS projects (id TEXT NOT NULL UNIQUE, last_modified TEXT, cursor_position TEXT, thumbnail TEXT)'); });
         return db;
     }
 
@@ -78,8 +79,15 @@ Window {
 
     NaviBar {
         state: "view"
-        id: navibar 
+        id: navibar
         z: 2
+    }
+
+    Menu {
+        id: menu
+        ListModel { id: menuModel 
+            ListElement { content: "test" }
+        }
     }
 
     Item {
@@ -87,7 +95,7 @@ Window {
         state: root.splitState
         width: root.width/2
         height: root.height
-        anchors { top: parent.top; right: parent.right; bottom: navibar.top; }
+        anchors { top: parent.top; left: background.right; bottom: navibar.top; }
         visible: opacity > 0 ? true : false
 
         Rectangle {
@@ -175,7 +183,7 @@ Window {
         id: background
         width: root.width/2
         height: root.height
-        anchors { top: parent.top; left: parent.left; bottom: navibar.top}
+        anchors { top: parent.top; left: menu.right; bottom: navibar.top}
         color: '#1d1f21'
         visible: opacity > 0 ? true : false
 
