@@ -14,7 +14,7 @@ Rectangle {
     Rectangle {
         id: repeater
         border.color: "#007edf"
-        width: 270 * scaleRatio
+        width: 240 * scaleRatio
         height: 29 * scaleRatio 
         anchors.centerIn: parent 
         radius: 5 
@@ -22,7 +22,7 @@ Rectangle {
         visible: false
         Row {
             Rectangle {
-                width: 90 *scaleRatio ; height: 29 * scaleRatio
+                width: 80 *scaleRatio ; height: 29 * scaleRatio
                 color: splitState == 'editor' ? "#007edf" : "transparent"
                 Text {
                     text: "Editor"
@@ -32,7 +32,7 @@ Rectangle {
                 }
             }
             Rectangle {
-                width: 90 * scaleRatio; height: 29 * scaleRatio
+                width: 80 * scaleRatio; height: 29 * scaleRatio
                 border.width: 1
                 border.color: "#007edf"
                 color: splitState == 'splitted' ? "#007edf" : "transparent"
@@ -44,7 +44,7 @@ Rectangle {
                 }
             }
             Rectangle {
-                width: 90 * scaleRatio; height: 29 * scaleRatio
+                width: 80 * scaleRatio; height: 29 * scaleRatio
                 color: splitState == 'viewer' ? "#007edf" : "transparent"
                 Text {
                     text: "Viewer"
@@ -74,17 +74,17 @@ Rectangle {
         anchors.centerIn: parent
         visible: (parent.state === 'view')
         MouseArea {
-            width: 90 * scaleRatio
+            width: 80 * scaleRatio
             height: 29 * scaleRatio
             onPressed: splitState = 'editor'
         }
         MouseArea {
-            width: 90 * scaleRatio
+            width: 80 * scaleRatio
             height: 29 * scaleRatio
             onPressed: splitState = 'splitted'
         }
         MouseArea {
-            width: 90 * scaleRatio
+            width: 80 * scaleRatio
             height: 29 * scaleRatio
             onPressed: splitState = 'viewer'
         }
@@ -113,7 +113,7 @@ Rectangle {
     Row {
         anchors.centerIn: parent
         visible: (parent.state === 'selection')
-        spacing: 30 * scaleRatio
+        spacing: 20 * scaleRatio
         Text {
             visible: (editor.selectionStart !== editor.selectionEnd)
             color: "#007edf"
