@@ -1,7 +1,7 @@
 Terrarium - Live QML Editor and Viewer
 =========
 
-![Doge](http://www.terrariumapp.com/images/doge.png)
+![Doge](http://i.imgur.com/Z0KMIaf.png)
 
 Terrarium is a cross platform QML Playground: the view [renders lively](http://i.imgur.com/MCA641U.gif) as you type in the editor, makes prototyping and experimenting with [QtQuick](http://qt.digia.com/qtquick/) a lot more fun!  
 
