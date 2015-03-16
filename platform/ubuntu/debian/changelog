@@ -1,3 +1,9 @@
+terrarium (1.5) trusty; urgency=medium
+
+  * Bump version
+
+ -- Ping-Hsun Chen (penk) <penkia@gmail.com>  Mon, 16 Mar 2015 11:10:32 +0800
+
 terrarium (0.1) trusty; urgency=medium
 
   * Initial commit

@@ -1,5 +1,5 @@
 {
-"description": "Live QML Editor and Viewer",
+"description": "UI Prototyping Tool for Coders",
 "framework": "ubuntu-sdk-14.04",
 "architecture": "armhf",
 "hooks": {
@@ -11,5 +11,5 @@
 "maintainer": "Penk Chen <penkia@gmail.com>",
 "name": "com.ubuntu.developer.penk.terrarium",
 "title": "Terrarium",
-"version": "0.4"
+"version": "1.5"
 }

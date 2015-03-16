@@ -1,8 +1,8 @@
 [Desktop Entry]
-Version=1.0
+Version=1.5
 Name=Terrarium
 GenericName=Terrarium
-Comment=Live QML Editor and Viewer
+Comment=UI Prototyping Tool for Coders
 Type=Application
 Icon=./terrarium-app.png
 Exec=./Terrarium

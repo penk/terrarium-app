@@ -30,6 +30,10 @@ Window {
     FontLoader { id: fontAwesome; source: "fontawesome-webfont.ttf" }
 
     Component.onCompleted: {
+
+        // FIXME: workaround for Ubuntu Phone
+        if ((scaleRatio < 1) && (os_type[platform]==='linux')) scaleRatio = 2;
+
         httpServer = Qt.createComponent("HttpServer.qml");
         if (httpServer.status == Component.Ready) {
             httpd = httpServer.createObject(root, {'id': 'httpd'});
