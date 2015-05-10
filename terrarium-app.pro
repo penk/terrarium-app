@@ -13,14 +13,16 @@ SOURCES += src/main.cpp \
     qhttpserver/src/qhttprequest.cpp \
     qhttpserver/src/qhttpresponse.cpp \
     qhttpserver/src/qhttpserver.cpp \
-    qhttpserver/http-parser/http_parser.c
+    qhttpserver/http-parser/http_parser.c \
+    src/quickitemgrabber.cpp
 
 HEADERS += qhttpserver/src/qhttpserver.h \
     qhttpserver/src//qhttpresponse.h \
     qhttpserver/src//qhttprequest.h \
     src/qmlhighlighter.h \
     src/documenthandler.h \
-    qhttpserver/src//qhttpconnection.h 
+    qhttpserver/src//qhttpconnection.h \ 
+    src/quickitemgrabber.h
 
 INCLUDEPATH += ./qhttpserver/http-parser/
 RESOURCES += qml/assets.qrc

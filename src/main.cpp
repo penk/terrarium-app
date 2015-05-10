@@ -9,6 +9,7 @@
 #include "qhttpserver/src/qhttpresponse.h"
 #include "qhttpserver/src/qhttpconnection.h"
 #include "documenthandler.h"
+#include "quickitemgrabber.h"
 #if USE_WEBENGINE
 #include <qtwebengineglobal.h>
 #endif
@@ -49,6 +50,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("platform", QVariant::fromValue(platformId));
     engine.rootContext()->setContextProperty("platformIP", QVariant::fromValue(platformIP));
+    engine.rootContext()->setContextProperty("Grabber",new QuickItemGrabber(&app));
     engine.load(QUrl("qrc:///main.qml"));
 #else
     QQuickView view;
