@@ -3,10 +3,17 @@ import HttpServer 1.0
 
 HttpServer {
     id: server
-    Component.onCompleted: listen("127.0.0.1", 5000)
+    Component.onCompleted: listen(platformIP, 5000)
     onNewRequest: {
         var route = /^\/\?/;
-        if ( route.test(request.url) ) {
+        if (request.url.toString().match(/\/update\?/)) {
+            editor.text = decodeURI(request.url.toString().replace(/\/update\?/, "")).replace(/%23/g, '#');
+            console.log(editor.text)
+            response.writeHead(200)
+            response.end()
+            reloadView();
+        }
+        else if ( route.test(request.url) ) {
             response.writeHead(200)
             response.write(editor.text)
             response.end()

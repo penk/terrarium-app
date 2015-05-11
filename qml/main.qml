@@ -77,7 +77,7 @@ Window {
     }
 
     function reloadView() {
-        viewLoader.setSource('http://localhost:5000/?'+Math.random()) // workaround for cache
+        viewLoader.setSource('http://'+platformIP+':5000/?'+Math.random()) // workaround for cache
     }
 
     NaviBar {
@@ -122,7 +122,7 @@ Window {
             property variant errorLineNumber: 0
             onStatusChanged: {
                 if (viewLoader.status == Loader.Error) {
-                    errorMessage.text = viewLoader.errorString().replace(/http:\/\/localhost:5000\/\?.*?:/g, "Line: ");
+                    errorMessage.text = viewLoader.errorString().replace(/http:\/\/.*:5000\/\?.*?:/g, "Line: ");
 
                     // restart http server when connection refused
                     var connectionRefused = /Connection refused/;
