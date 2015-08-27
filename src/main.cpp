@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
              platformIP = address.toString();
     }
 #if USE_WEBENGINE
-    QWebEngine::initialize();
+    QtWebEngine::initialize();
 #endif
 #if QT_VERSION > QT_VERSION_CHECK(5, 1, 0)
     QQmlApplicationEngine engine;
