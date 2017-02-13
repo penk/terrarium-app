@@ -16,6 +16,8 @@
 
 int main(int argc, char *argv[])
 {
+    QStringList imports, plugins;
+
     QGuiApplication app(argc, argv);
     app.setApplicationName("Terrarium");
     app.setOrganizationName("terrariumapp");
@@ -43,11 +45,31 @@ int main(int argc, char *argv[])
         if (address.protocol() == QAbstractSocket::IPv4Protocol && address != QHostAddress(QHostAddress::LocalHost))
              platformIP = address.toString();
     }
+
+    // Handle command line arguments
+    const QStringList arguments = QCoreApplication::arguments();
+    for (int i = 1, size = arguments.size(); i < size; ++i) {
+      const QString lowerArgument = arguments.at(i).toLower();
+      if (lowerArgument == QLatin1String("-i") && i + 1 < size) {
+        imports.append(arguments.at(++i));
+      } else if (lowerArgument == QLatin1String("-p") && i + 1 < size) {
+        plugins.append(arguments.at(++i));
+      }
+    }
+
 #if USE_WEBENGINE
     QtWebEngine::initialize();
 #endif
+
 #if QT_VERSION > QT_VERSION_CHECK(5, 1, 0)
     QQmlApplicationEngine engine;
+
+    for(int i = 0; i < imports.size(); ++i) {
+      engine.addImportPath(imports[i]);
+    }
+    for(int i = 0; i < plugins.size(); ++i) {
+      engine.addPluginPath(plugins[i]);
+    }
     engine.rootContext()->setContextProperty("platform", QVariant::fromValue(platformId));
     engine.rootContext()->setContextProperty("platformIP", QVariant::fromValue(platformIP));
     engine.rootContext()->setContextProperty("Grabber",new QuickItemGrabber(&app));

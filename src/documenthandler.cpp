@@ -66,10 +66,11 @@ void DocumentHandler::setTarget(QQuickItem *target)
     QVariant doc = m_target->property("textDocument");
     if (doc.canConvert<QQuickTextDocument*>()) {
         QQuickTextDocument *qqdoc = doc.value<QQuickTextDocument*>();
-        if (qqdoc)
+        if (qqdoc) {
             m_doc = qqdoc->textDocument();
             m_highlighter = new QMLHighlighter(m_doc);
             //m_highlighter = new Highlighter(m_doc);
+        }
     }
     emit targetChanged();
 }
