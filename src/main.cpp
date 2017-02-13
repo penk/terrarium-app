@@ -16,7 +16,7 @@
 
 int main(int argc, char *argv[])
 {
-    QStringList imports;
+    QStringList imports, plugins;
 
     QGuiApplication app(argc, argv);
     app.setApplicationName("Terrarium");
@@ -52,6 +52,8 @@ int main(int argc, char *argv[])
       const QString lowerArgument = arguments.at(i).toLower();
       if (lowerArgument == QLatin1String("-i") && i + 1 < size) {
         imports.append(arguments.at(++i));
+      } else if (lowerArgument == QLatin1String("-p") && i + 1 < size) {
+        plugins.append(arguments.at(++i));
       }
     }
 
@@ -64,6 +66,9 @@ int main(int argc, char *argv[])
 
     for(int i = 0; i < imports.size(); ++i) {
       engine.addImportPath(imports[i]);
+    }
+    for(int i = 0; i < plugins.size(); ++i) {
+      engine.addPluginPath(plugins[i]);
     }
     engine.rootContext()->setContextProperty("platform", QVariant::fromValue(platformId));
     engine.rootContext()->setContextProperty("platformIP", QVariant::fromValue(platformIP));
