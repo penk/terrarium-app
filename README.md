@@ -25,6 +25,10 @@ It monitors changes in its `TextEdit`, and triggers the view to reload source fr
 
 ## Platform Specific Instructions
 
+### For Arch-Linux
+Just go to AUR:
+`yaourt -S terrarium-git`
+
 ### For Mac OSX/iOS
 
 To add icons to iOS build, first generate and open `Terrarium.xcodeproj`, switch AppIcon to use [Assets Catalog](https://developer.apple.com/library/ios/recipes/xcode_help-image_catalog-1.0/Recipe.html), then replace `Terrarium/Images.xcassets/` directory with `platform/ios/Images.xcassets`.
